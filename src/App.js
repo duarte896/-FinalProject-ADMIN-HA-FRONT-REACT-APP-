@@ -12,7 +12,7 @@ function App() {
       <>
         <header className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
           <a className="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">
-            KSURF
+            Hack Analitics
           </a>
           <button
             className="navbar-toggler position-absolute d-md-none collapsed"
@@ -146,7 +146,7 @@ function App() {
 
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
               <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                <h1 className="h2">Dashboard</h1>
+                <h1 className="h2">KSURF</h1>
                 <div className="btn-toolbar mb-2 mb-md-0">
                   <div className="btn-group me-2">
                     <button
@@ -179,6 +179,9 @@ function App() {
                 <Route path="/orders" element={<Orders />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/customers" element={<Customers />} />
+                {/* <Route path="/orders/:id" element={<Order />} />
+                <Route path="/products/:id" element={<Product />} />
+                <Route path="/customers/:id" element={<Customer />} /> */}
               </Routes>
             </main>
           </div>
