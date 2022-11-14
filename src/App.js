@@ -5,6 +5,7 @@ import Chart from "./components/pages/Home/Chart";
 import Orders from "./components/pages/Orders/Orders";
 import Home from "./components/pages/Home/Home";
 import Customers from "./components/pages/Customers/Customers";
+import Order from "./components/pages/Orders/Order";
 
 function App() {
   return (
@@ -179,8 +180,8 @@ function App() {
                 <Route path="/orders" element={<Orders />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/customers" element={<Customers />} />
-                {/* <Route path="/orders/:id" element={<Order />} />
-                <Route path="/products/:id" element={<Product />} />
+                <Route path="/orders/:id" element={<Order />} />
+                {/* <Route path="/products/:id" element={<Product />} />
                 <Route path="/customers/:id" element={<Customer />} /> */}
               </Routes>
             </main>

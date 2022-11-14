@@ -14,7 +14,6 @@ function Products(params) {
         headers: { Authentication: `Berarer` },
       });
       setData(response.data.allProducts);
-      console.log(response.data);
     };
     getData();
   }, []);
