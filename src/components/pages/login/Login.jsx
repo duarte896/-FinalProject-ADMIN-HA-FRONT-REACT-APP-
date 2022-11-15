@@ -25,9 +25,10 @@ function Login() {
       });
       if (response) {
         navigate("/");
-        return dispatch(saveTokenTask(response.data));
+        return dispatch(saveTokenTask(response.data.token));
       }
     } catch (error) {
+      // console.log(error);
       setMessage(error.response.data.msg);
     }
   };

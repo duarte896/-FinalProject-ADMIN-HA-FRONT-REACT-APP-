@@ -1,5 +1,6 @@
 import { Route, Routes, Link } from "react-router-dom";
 import "./App.css";
+import { useSelector } from "react-redux";
 import Products from "./components/pages/products/Products";
 import Chart from "./components/pages/home/Chart";
 import Orders from "./components/pages/orders/Orders";
@@ -13,9 +14,11 @@ import Admins from "./components/pages/admin/Admins";
 import Navbar from "./components/Navbar";
 
 function App() {
+  const user = useSelector((state) => state.user);
+  console.log(user.user);
   return (
     <div className="App">
-      <Navbar />
+      <Navbar user={user.user} />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/orders" element={<Orders />} />
