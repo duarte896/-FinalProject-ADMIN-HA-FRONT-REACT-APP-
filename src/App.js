@@ -10,7 +10,7 @@ import CreateProduct from "./components/forms/CreateProduct";
 import Login from "./components/pages/login/Login";
 import Customer from "./components/pages/customers/Customer";
 import Admins from "./components/pages/admin/Admins";
-import Navbar from "./components/MainStructure";
+import Navbar from "./components/Navbar";
 
 function App() {
   return (
