@@ -37,6 +37,12 @@ function Sidebar() {
               Customers
             </Link>
           </li>
+          <li className="nav-item">
+            <Link className="nav-link" to={"/admins"}>
+              <span data-feather="users" className="align-text-bottom"></span>
+              Admins
+            </Link>
+          </li>
         </ul>
 
         <h6 className="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted text-uppercase">
