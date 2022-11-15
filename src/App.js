@@ -12,6 +12,7 @@ import Login from "./components/pages/login/Login";
 import Customer from "./components/pages/customers/Customer";
 import Admins from "./components/pages/admin/Admins";
 import Navbar from "./components/MainStructure";
+import Admin from "./components/pages/admin/Admin";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/products/create" element={<CreateProduct />} />
         <Route path="/customers/:id" element={<Customer />} />
         <Route path="/admin/create" element={<CreateAdmin />} />
+        <Route path="/admins" element={<Admin />} />
       </Routes>
     </div>
   );
