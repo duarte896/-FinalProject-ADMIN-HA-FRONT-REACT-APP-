@@ -18,7 +18,7 @@ function Customer() {
     getData();
   }, []);
 
-  return (
+  return user ? (
     <div className="container-fluid">
       <div className="row">
         <Sidebar />
@@ -35,6 +35,8 @@ function Customer() {
         </main>
       </div>
     </div>
+  ) : (
+    <p>Loading...</p>
   );
 }
 export default Customer;
