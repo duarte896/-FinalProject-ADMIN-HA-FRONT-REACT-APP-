@@ -28,8 +28,8 @@ function Login() {
         return dispatch(saveTokenTask(response.data.token));
       }
     } catch (error) {
-      // console.log(error);
-      setMessage(error.response.data.msg);
+      console.log(error);
+      // setMessage(error.response.data.msg);
     }
   };
 
