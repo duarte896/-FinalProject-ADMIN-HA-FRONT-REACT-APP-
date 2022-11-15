@@ -7,6 +7,7 @@ import Order from "./components/pages/orders/Order";
 import Home from "./components/pages/home/Home";
 import Customers from "./components/pages/customers/Customers";
 import CreateProduct from "./components/forms/CreateProduct";
+import Customer from "./components/pages/customers/Customer";
 
 function App() {
   return (
@@ -180,6 +181,7 @@ function App() {
                 <Route path="/products/crear" element={<CreateProduct />} />
                 <Route path="/customers" element={<Customers />} />
                 <Route path="/orders/:id" element={<Order />} />
+                <Route path="/customers/:id" element={<Customer />} />
               </Routes>
             </main>
           </div>

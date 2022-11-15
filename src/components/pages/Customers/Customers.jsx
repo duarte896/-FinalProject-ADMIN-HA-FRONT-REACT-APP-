@@ -11,10 +11,8 @@ function Users(params) {
       const response = await axios({
         method: "GET",
         url: `http://localhost:8000/admin/users`,
-        headers: { Authentication: `Berarer` },
       });
       setData(response.data.allUsers);
-      console.log(response.data);
     };
     getData();
   }, []);
@@ -35,12 +33,12 @@ function Users(params) {
           <tbody>
             {data.map((item) => {
               return (
-                <tr key={item.id}>
+                <tr key={item._id}>
                   <td>{item._id}</td>
                   <td>{item.firstname}</td>
                   <td>{item.lastname}</td>
                   <td>
-                    <Link to={`/users/${item._id}`}>Enter</Link>
+                    <Link to={`/customers/${item._id}`}>Enter</Link>
                   </td>
                 </tr>
               );

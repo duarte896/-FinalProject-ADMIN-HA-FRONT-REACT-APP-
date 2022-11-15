@@ -52,7 +52,6 @@ function Order() {
               </tr>
             );
           })}
-          <tr>Total</tr>
         </tbody>
       </table>
       <h2>User</h2>
