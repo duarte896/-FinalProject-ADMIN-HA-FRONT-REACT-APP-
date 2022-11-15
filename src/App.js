@@ -8,6 +8,7 @@ import Home from "./components/pages/home/Home";
 import Customers from "./components/pages/customers/Customers";
 import CreateProduct from "./components/forms/CreateProduct";
 import Customer from "./components/pages/customers/Customer";
+import Admins from "./components/pages/admin/Admins";
 
 function App() {
   return (
@@ -89,6 +90,15 @@ function App() {
                         className="align-text-bottom"
                       ></span>
                       Customers
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to={"/admins"}>
+                      <span
+                        data-feather="users"
+                        className="align-text-bottom"
+                      ></span>
+                      Admins
                     </Link>
                   </li>
                 </ul>
@@ -182,6 +192,7 @@ function App() {
                 <Route path="/customers" element={<Customers />} />
                 <Route path="/orders/:id" element={<Order />} />
                 <Route path="/customers/:id" element={<Customer />} />
+                <Route path="/admins" element={<Admins />} />
               </Routes>
             </main>
           </div>
