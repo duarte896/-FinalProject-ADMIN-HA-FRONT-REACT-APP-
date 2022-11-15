@@ -42,12 +42,12 @@ function Login() {
             <div className={styles.formLogin}>
               <form className="p-2 mb-1" action="" onSubmit={handleSubmit}>
                 <h3
-                  className={styles.login_title + " modal-title"}
+                  className={styles.login_title + " modal-title mb-3"}
                   id="formModalLabel"
                 >
                   Login
                 </h3>
-                <p>Ready to start using Twitter?</p>
+
                 <div className="form-group mt-2">
                   <input
                     value={email}
