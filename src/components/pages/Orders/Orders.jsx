@@ -11,11 +11,10 @@ function Orders(params) {
     const getData = async () => {
       const response = await axios({
         method: "GET",
-        url: `http://localhost:8000/admin/data`,
+        url: `http://localhost:8000/admin/orders`,
         headers: { Authentication: `Berarer` },
       });
       setData(response.data.allOrders);
-      console.log(data);
     };
     getData();
   }, []);
