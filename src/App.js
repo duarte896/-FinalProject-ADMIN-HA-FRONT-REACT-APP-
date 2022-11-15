@@ -3,6 +3,7 @@ import "./App.css";
 import Products from "./components/pages/products/Products";
 import Chart from "./components/pages/home/Chart";
 import Orders from "./components/pages/orders/Orders";
+import Order from "./components/pages/orders/Order";
 import Home from "./components/pages/home/Home";
 import Customers from "./components/pages/customers/Customers";
 import CreateProduct from "./components/forms/CreateProduct";
@@ -181,6 +182,7 @@ function App() {
                 <Route path="/products" element={<Products />} />
                 <Route path="/products/crear" element={<CreateProduct />} />
                 <Route path="/customers" element={<Customers />} />
+                <Route path="/orders/:id" element={<Order />} />
               </Routes>
             </main>
           </div>
