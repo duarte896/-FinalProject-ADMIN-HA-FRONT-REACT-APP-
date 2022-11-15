@@ -1,19 +1,11 @@
 import { Route, Routes, Link } from "react-router-dom";
 import "./App.css";
-import Products from "./components/pages/Products/Products";
-<<<<<<< HEAD
+import Products from "./components/pages/products/Products";
 import Chart from "./components/pages/home/Chart";
 import Orders from "./components/pages/orders/Orders";
 import Home from "./components/pages/home/Home";
 import Customers from "./components/pages/customers/Customers";
 import CreateProduct from "./components/forms/CreateProduct";
-=======
-import Chart from "./components/pages/Home/Chart";
-import Orders from "./components/pages/Orders/Orders";
-import Home from "./components/pages/Home/Home";
-import Customers from "./components/pages/Customers/Customers";
-import Order from "./components/pages/Orders/Order";
->>>>>>> c464a7a8147e4faf66c8ce9ad975b927d8321dbb
 
 function App() {
   return (
@@ -21,7 +13,7 @@ function App() {
       <>
         <header className="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
           <a className="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6" href="#">
-            Hack Analitics
+            KSURF
           </a>
           <button
             className="navbar-toggler position-absolute d-md-none collapsed"
@@ -155,13 +147,8 @@ function App() {
 
             <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
               <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-<<<<<<< HEAD
                 <h1 className="h2">Dashboard</h1>
                 {/* <div className="btn-toolbar mb-2 mb-md-0">
-=======
-                <h1 className="h2">KSURF</h1>
-                <div className="btn-toolbar mb-2 mb-md-0">
->>>>>>> c464a7a8147e4faf66c8ce9ad975b927d8321dbb
                   <div className="btn-group me-2">
                     <button
                       type="button"
@@ -194,9 +181,6 @@ function App() {
                 <Route path="/products" element={<Products />} />
                 <Route path="/products/crear" element={<CreateProduct />} />
                 <Route path="/customers" element={<Customers />} />
-                <Route path="/orders/:id" element={<Order />} />
-                {/* <Route path="/products/:id" element={<Product />} />
-                <Route path="/customers/:id" element={<Customer />} /> */}
               </Routes>
             </main>
           </div>
