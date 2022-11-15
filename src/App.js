@@ -20,9 +20,12 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/orders" element={<Orders />} />
         <Route path="/products" element={<Products />} />
-        <Route path="/products/crear" element={<CreateProduct />} />
         <Route path="/customers" element={<Customers />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/admins" element={<Admins />} />
+        <Route path="/orders/:id" element={<Order />} />
+        <Route path="/products/crear" element={<CreateProduct />} />
+        <Route path="/customers/:id" element={<Customer />} />
       </Routes>
     </div>
   );
