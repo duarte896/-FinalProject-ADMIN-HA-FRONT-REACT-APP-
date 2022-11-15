@@ -1,0 +1,106 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.body_background {
+  background-color: #1d1e1e;
+  height: 100vh;
+  padding-top: 2.5%;
+}
+
+.row {
+  height: 90vh;
+  filter: brightness(0.9);
+}
+
+.leftCol {
+  background-image: url("https://ozonekites.com/wp-content/uploads/2021/01/Infinity-V2-Action-9.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  border-radius: 5px 0 0 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.leftCol p {
+  font-size: 1.8rem;
+  color: white;
+  margin-left: 35px;
+  margin-bottom: 35px;
+}
+
+.rightCol {
+  background-color: #eaeaea;
+  border-radius: 0 5px 5px 0;
+  width: 616px;
+}
+
+.login_title {
+  font-family: "Bebas Neue";
+  color: #33d5ad;
+}
+
+.formLogin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 190px;
+}
+
+.formLogin form p {
+  font-family: "Montserrat";
+  font-size: 0.8rem;
+  margin-bottom: 30px;
+}
+
+.form_font {
+  font-family: "Montserrat";
+  font-size: 0.8rem;
+}
+
+.linkToRegister {
+  font-size: 0.9rem;
+  color: gray;
+  margin-top: 1rem;
+}
+
+.signup {
+  text-decoration: none;
+  color: #33d5ad;
+}
+
+.formLogin form {
+  width: 320px;
+}
+
+.formLogin button {
+  width: 297px;
+  background-color: #1d1e1e;
+  border: #1d1e1e;
+  border-radius: 5px;
+}
+
+.formLogin button:hover,
+.formLogin button:active,
+.formLogin button:focus,
+.formLogin button:active:focus {
+  background-color: #272c2c;
+  color: #fff;
+}
+
+@media (max-width: 767px) {
+  .leftCol {
+    display: none;
+  }
+  .rightCol {
+    border-radius: 1rem;
+  }
+}
+
+.errorMessage {
+  color: red;
+}

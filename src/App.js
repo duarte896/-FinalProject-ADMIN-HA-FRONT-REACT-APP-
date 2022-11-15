@@ -6,6 +6,7 @@ import Orders from "./components/pages/orders/Orders";
 import Home from "./components/pages/home/Home";
 import Customers from "./components/pages/customers/Customers";
 import CreateProduct from "./components/forms/CreateProduct";
+import Login from "./components/pages/login/Login";
 
 function App() {
   return (
@@ -178,6 +179,7 @@ function App() {
                 <Route path="/products" element={<Products />} />
                 <Route path="/products/crear" element={<CreateProduct />} />
                 <Route path="/customers" element={<Customers />} />
+                <Route path="/login" element={<Login />} />
               </Routes>
             </main>
           </div>
