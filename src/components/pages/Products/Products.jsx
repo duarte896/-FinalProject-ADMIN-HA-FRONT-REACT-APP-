@@ -11,10 +11,10 @@ function Products(params) {
     const getData = async () => {
       const response = await axios({
         method: "GET",
-        url: `http://localhost:8000/admin/products`,
+        url: `http://localhost:8000/products`,
         headers: { Authentication: `Berarer` },
       });
-      setData(response.data.allProducts);
+      setData(response.data);
     };
     getData();
   }, []);

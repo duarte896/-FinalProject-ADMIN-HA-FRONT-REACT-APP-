@@ -11,9 +11,9 @@ function Users(params) {
     const getData = async () => {
       const response = await axios({
         method: "GET",
-        url: `http://localhost:8000/admin/users`,
+        url: `http://localhost:8000/users`,
       });
-      setData(response.data.allUsers);
+      setData(response.data);
     };
     getData();
   }, []);

@@ -12,10 +12,10 @@ function Orders(params) {
     const getData = async () => {
       const response = await axios({
         method: "GET",
-        url: `http://localhost:8000/admin/orders`,
+        url: `http://localhost:8000/orders`,
         headers: { Authentication: `Berarer` },
       });
-      setData(response.data.allOrders);
+      setData(response.data);
     };
     getData();
   }, []);

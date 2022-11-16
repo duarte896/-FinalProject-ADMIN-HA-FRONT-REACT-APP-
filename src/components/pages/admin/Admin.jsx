@@ -11,9 +11,9 @@ function Admin() {
     const getData = async () => {
       const response = await axios({
         method: "GET",
-        url: `http://localhost:8000/admin/admin/${params.id}`,
+        url: `http://localhost:8000/admins/${params.id}`,
       });
-      setAdmin(response.data.oneAdmin);
+      setAdmin(response.data);
     };
     getData();
   }, []);

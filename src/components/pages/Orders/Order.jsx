@@ -13,7 +13,7 @@ function Order() {
     const getData = async () => {
       const response = await axios({
         method: "GET",
-        url: `http://localhost:8000/admin/orders/${params.id}`,
+        url: `http://localhost:8000/orders/${params.id}`,
       });
       console.log(response.data);
       setOrder(response.data.oneOrder);

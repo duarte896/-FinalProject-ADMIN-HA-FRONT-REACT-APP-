@@ -11,9 +11,9 @@ function Customer() {
     const getData = async () => {
       const response = await axios({
         method: "GET",
-        url: `http://localhost:8000/admin/users/${params.id}`,
+        url: `http://localhost:8000/users/${params.id}`,
       });
-      setUser(response.data.oneUser);
+      setUser(response.data);
     };
     getData();
   }, []);

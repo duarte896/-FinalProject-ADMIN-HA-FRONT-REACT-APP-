@@ -11,9 +11,9 @@ function Admins() {
     const getData = async () => {
       const response = await axios({
         method: "GET",
-        url: `http://localhost:8000/admin/admins`,
+        url: `http://localhost:8000/admins`,
       });
-      setAdmins(response.data.allAdmins);
+      setAdmins(response.data);
     };
     getData();
   }, []);
