@@ -2,6 +2,7 @@ import { Route, Routes, Link } from "react-router-dom";
 import "./App.css";
 import { useSelector } from "react-redux";
 import Products from "./components/pages/products/Products";
+import Categories from "./components/pages/categories/Categories";
 import Chart from "./components/pages/home/Chart";
 import Orders from "./components/pages/orders/Orders";
 import Order from "./components/pages/orders/Order";
@@ -14,6 +15,9 @@ import Customer from "./components/pages/customers/Customer";
 import Admins from "./components/pages/admin/Admins";
 import Navbar from "./components/Navbar";
 import Admin from "./components/pages/admin/Admin";
+import Product from "./components/pages/products/Product";
+import NoMatch from "./components/NoMatch";
+import EditProduct from "./components/forms/EditProduct";
 
 function App() {
   const user = useSelector((state) => state.user);
@@ -26,14 +30,18 @@ function App() {
         <Route path="/orders" element={<Orders />} />
 
         <Route path="/products" element={<Products />} />
+        <Route path="/categories" element={<Categories />} />
         <Route path="/customers" element={<Customers />} />
         <Route path="/login" element={<Login />} />
         <Route path="/admins" element={<Admins />} />
         <Route path="/orders/:id" element={<Order />} />
+        <Route path="/products/:slug" element={<Product />} />
         <Route path="/products/create" element={<CreateProduct />} />
+        <Route path="/products/edit/:slug" element={<EditProduct />} />
         <Route path="/customers/:id" element={<Customer />} />
         <Route path="/admin/create" element={<CreateAdmin />} />
-        <Route path="/admins" element={<Admin />} />
+        <Route path="/admins/:id" element={<Admin />} />
+        <Route path="*" element={<NoMatch />} />
       </Routes>
     </div>
   );

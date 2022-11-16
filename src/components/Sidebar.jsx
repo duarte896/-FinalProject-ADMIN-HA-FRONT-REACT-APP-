@@ -32,6 +32,15 @@ function Sidebar() {
             </Link>
           </li>
           <li className="nav-item">
+            <Link className="nav-link" to={"/categories"}>
+              <span
+                data-feather="shopping-cart"
+                className="align-text-bottom"
+              ></span>
+              Categories
+            </Link>
+          </li>
+          <li className="nav-item">
             <Link className="nav-link" to={"/customers"}>
               <span data-feather="users" className="align-text-bottom"></span>
               Customers

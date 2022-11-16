@@ -36,21 +36,21 @@ function Admins() {
             <table className="table table-striped table-sm">
               <thead>
                 <tr>
-                  <th scope="col">User Id</th>
                   <th scope="col">Name</th>
                   <th scope="col">Lastname</th>
-                  <th scope="col">View user</th>
+                  <th scope="col">Admin Id</th>
+                  <th scope="col">View admin</th>
                 </tr>
               </thead>
               <tbody>
                 {admins.map((item) => {
                   return (
                     <tr key={item._id}>
-                      <td>{item._id}</td>
                       <td>{item.firstname}</td>
                       <td>{item.lastname}</td>
+                      <td>{item._id}</td>
                       <td>
-                        <Link to={`/customers/${item._id}`}>Enter</Link>
+                        <Link to={`/admins/${item._id}`}>Enter</Link>
                       </td>
                     </tr>
                   );

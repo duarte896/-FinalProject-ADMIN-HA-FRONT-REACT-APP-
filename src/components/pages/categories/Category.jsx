@@ -4,8 +4,9 @@ import axios from "axios";
 import Sidebar from "../../Sidebar";
 
 function Customer() {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState({});
   const params = useParams();
+
   useEffect(() => {
     const getData = async () => {
       const response = await axios({

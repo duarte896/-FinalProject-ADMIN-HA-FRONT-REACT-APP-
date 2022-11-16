@@ -1,11 +1,13 @@
 import styles from "./CreateProduct.module.css";
 import axios from "axios";
 import { Container } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Sidebar from "../Sidebar";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function CreateProduct() {
+  const params = useParams();
+  const [product, setProduct] = useState("");
   const [name, setName] = useState("");
   const [type, setType] = useState("");
   const [price, setPrice] = useState("");
@@ -15,12 +17,31 @@ function CreateProduct() {
   const [radioValue, setRadioValue] = useState("");
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const getData = async () => {
+      const response = await axios({
+        method: "GET",
+        url: `http://localhost:8000/products/${params.slug}`,
+      });
+
+      setProduct(response.data);
+      setName(response.data.name);
+      setType(response.data.type);
+      setPrice(response.data.price);
+      setStock(response.data.stock);
+
+      setDescription(response.data.description);
+      setRadioValue(response.data.featured);
+    };
+    getData();
+  }, []);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const response = await axios({
-        url: `${process.env.REACT_APP_API_URL}/products`,
-        method: "POST",
+        url: `${process.env.REACT_APP_API_URL}/products/${product._id}`,
+        method: "PATCH",
         data: {
           name,
           type,
@@ -30,7 +51,7 @@ function CreateProduct() {
           radioValue,
         },
       });
-      navigate(`/products/${response.data}`);
+      navigate(`/products/${params.slug}`);
     } catch (error) {
       console.log(error);
     }
@@ -42,7 +63,7 @@ function CreateProduct() {
         <Sidebar />
         <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
           <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 className="h2">Create Product</h1>
+            <h1 className="h2">Edit Product</h1>
           </div>
           <Container className={"border " + styles.form_container}>
             <form onSubmit={handleSubmit}>
@@ -100,7 +121,8 @@ function CreateProduct() {
               </div>
               <div className="mb-3">
                 <label htmlFor="image" className="form-label">
-                  Image
+                  Upload a new image. Watch out! This will overwrite your
+                  previous image.
                 </label>
                 <input
                   value={image}
@@ -154,7 +176,7 @@ function CreateProduct() {
 
               <div className="mb-3 d-flex justify-content-end">
                 <button type="submit" className="btn btn-primary">
-                  Add Product
+                  Update Product
                 </button>
               </div>
             </form>

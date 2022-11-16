@@ -4,7 +4,9 @@ import axios from "axios";
 import Sidebar from "../../Sidebar";
 
 function Order() {
+  let total = 0;
   const [order, setOrder] = useState();
+  const [orderTotal, setOrderTotal] = useState(0);
   const [products, setProducts] = useState();
   const [user, setUser] = useState();
   const params = useParams();
@@ -15,10 +17,10 @@ function Order() {
         method: "GET",
         url: `http://localhost:8000/orders/${params.id}`,
       });
-      console.log(response.data);
-      setOrder(response.data.oneOrder);
-      setProducts(response.data.oneOrder.products);
-      setUser(response.data.oneOrder.userId);
+
+      setOrder(response.data);
+      setProducts(response.data.products);
+      setUser(response.data.user);
     };
     getData();
   }, []);
@@ -38,7 +40,6 @@ function Order() {
           <table className="table table-striped table-sm">
             <thead>
               <tr>
-                <th scope="col">Product Id</th>
                 <th scope="col">Product name</th>
                 <th scope="col">Quantity</th>
                 <th scope="col">Paid price</th>
@@ -47,11 +48,11 @@ function Order() {
             </thead>
             <tbody>
               {products.map((item) => {
+                total = total + item.price * item.qty;
                 return (
-                  <tr key={item._id}>
-                    <td>{item._id}</td>
+                  <tr key={item.name}>
                     <td>{item.name}</td>
-                    <td>information</td>
+                    <td>{item.qty}</td>
                     <td>${item.price}</td>
                     <td>
                       <Link to={`/product/${item._id}`}>Watch</Link>
@@ -59,8 +60,15 @@ function Order() {
                   </tr>
                 );
               })}
+              <tr>
+                <td>Order Total:</td>
+                <td></td>
+                <td style={{ fontWeight: "bolder" }}>${order.orderTotal}</td>
+                <td></td>
+              </tr>
             </tbody>
           </table>
+
           <h2>User</h2>
           <p>ID: {user._id}</p>
           <p>User: {user.firstname + " " + user.lastname}</p>
