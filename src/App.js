@@ -1,9 +1,8 @@
-import { Route, Routes, Link } from "react-router-dom";
+import { Route, Routes, Link, useLocation } from "react-router-dom";
 import "./App.css";
 import { useSelector } from "react-redux";
 import Products from "./components/pages/products/Products";
 import Categories from "./components/pages/categories/Categories";
-import Chart from "./components/pages/home/Chart";
 import Orders from "./components/pages/orders/Orders";
 import Order from "./components/pages/orders/Order";
 import Home from "./components/pages/home/Home";
@@ -20,15 +19,15 @@ import NoMatch from "./components/NoMatch";
 import EditProduct from "./components/forms/EditProduct";
 
 function App() {
-  const user = useSelector((state) => state.user);
-  console.log(user.user);
+  const currentPage = useLocation();
+  const pagesWithoutNavbar = ["/login"];
   return (
     <div className="App">
-      <Navbar user={user.user} />
+      {!pagesWithoutNavbar.includes(currentPage.pathname) && <Navbar />}
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/orders" element={<Orders />} />
-
         <Route path="/products" element={<Products />} />
         <Route path="/categories" element={<Categories />} />
         <Route path="/customers" element={<Customers />} />
