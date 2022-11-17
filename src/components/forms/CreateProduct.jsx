@@ -1,7 +1,7 @@
 import styles from "./CreateProduct.module.css";
 import axios from "axios";
 import { Container } from "react-bootstrap";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Sidebar from "../Sidebar";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +13,20 @@ function CreateProduct() {
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [radioValue, setRadioValue] = useState("");
+  const [categories, setCategories] = useState(null);
+  const [category, setCategory] = useState();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const getCategories = async () => {
+      const response = await axios({
+        url: `${process.env.REACT_APP_API_URL}/categories`,
+        method: "GET",
+      });
+      setCategories(response.data);
+    };
+    getCategories();
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -28,6 +41,7 @@ function CreateProduct() {
           stock,
           description,
           radioValue,
+          category,
         },
       });
       navigate(`/products/${response.data}`);
@@ -36,7 +50,7 @@ function CreateProduct() {
     }
   };
 
-  return (
+  return categories ? (
     <div className="container-fluid">
       <div className="row">
         <Sidebar />
@@ -151,6 +165,24 @@ function CreateProduct() {
                   False
                 </label>
               </div>
+              <div className="mb-3">
+                <label className="mb-2">
+                  Select a Category for new product:{" "}
+                </label>
+                <br />
+                <select
+                  name="select"
+                  onChange={(event) => setCategory(event.target.value)}
+                >
+                  {categories.map((item) => {
+                    return (
+                      <option key={item._id} value={item._id}>
+                        {item.name}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
 
               <div className="mb-3 d-flex justify-content-end">
                 <button type="submit" className="btn btn-primary">
@@ -162,6 +194,8 @@ function CreateProduct() {
         </main>
       </div>
     </div>
+  ) : (
+    <p>Loading...</p>
   );
 }
 export default CreateProduct;

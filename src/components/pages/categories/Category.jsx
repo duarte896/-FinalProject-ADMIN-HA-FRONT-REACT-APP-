@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
+import Button from "react-bootstrap/Button";
 import Sidebar from "../../Sidebar";
 
 function Category() {
   const [category, setCategory] = useState({});
+  const [products, setProducts] = useState([]);
+
   const params = useParams();
 
   useEffect(() => {
@@ -14,10 +17,11 @@ function Category() {
         url: `http://localhost:8000/categories/${params.name}`,
       });
       setCategory(response.data);
+      setProducts(response.data.products);
     };
     getData();
   }, []);
-  
+
   return category ? (
     <div className="container-fluid">
       <div className="row">
@@ -30,6 +34,7 @@ function Category() {
             <div>
               <h3>ID: {category._id}</h3>
               <p>Category: {category.name}</p>
+              <Button variant="danger">Delete Category</Button>
             </div>
             <div>
               <img src={category.image} alt="" />
@@ -37,6 +42,7 @@ function Category() {
           </div>
 
           <table className="table table-striped table-sm">
+            <h3>Products({products.length})</h3>
             <thead>
               <tr>
                 <th scope="col">Name</th>
@@ -45,7 +51,7 @@ function Category() {
               </tr>
             </thead>
             <tbody>
-              {category.products.map((item) => {
+              {products.map((item) => {
                 return (
                   <tr key={item._id}>
                     <td>{item.name}</td>

@@ -15,7 +15,20 @@ function CreateProduct() {
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
   const [radioValue, setRadioValue] = useState("");
+  const [categories, setCategories] = useState();
+  const [category, setCategory] = useState();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const getCategories = async () => {
+      const response = await axios({
+        url: `${process.env.REACT_APP_API_URL}/categories`,
+        method: "GET",
+      });
+      setCategories(response.data);
+    };
+    getCategories();
+  }, []);
 
   useEffect(() => {
     const getData = async () => {
@@ -23,13 +36,13 @@ function CreateProduct() {
         method: "GET",
         url: `http://localhost:8000/products/${params.slug}`,
       });
-
+      console.log(response.data);
       setProduct(response.data);
       setName(response.data.name);
       setType(response.data.type);
       setPrice(response.data.price);
       setStock(response.data.stock);
-
+      setCategory(response.data.category._id);
       setDescription(response.data.description);
       setRadioValue(response.data.featured);
     };
@@ -49,6 +62,7 @@ function CreateProduct() {
           stock,
           description,
           radioValue,
+          category,
         },
       });
       navigate(`/products/${params.slug}`);
@@ -57,7 +71,7 @@ function CreateProduct() {
     }
   };
 
-  return (
+  return categories ? (
     <div className="container-fluid">
       <div className="row">
         <Sidebar />
@@ -173,6 +187,25 @@ function CreateProduct() {
                   False
                 </label>
               </div>
+              <div className="mb-3">
+                <label className="mb-2">
+                  Select a Category for new product:{" "}
+                </label>
+                <br />
+                <select
+                  name="select"
+                  value={category}
+                  onChange={(event) => setCategory(event.target.value)}
+                >
+                  {categories.map((item) => {
+                    return (
+                      <option key={item._id} value={item._id}>
+                        {item.name}
+                      </option>
+                    );
+                  })}
+                </select>
+              </div>
 
               <div className="mb-3 d-flex justify-content-end">
                 <button type="submit" className="btn btn-primary">
@@ -184,6 +217,8 @@ function CreateProduct() {
         </main>
       </div>
     </div>
+  ) : (
+    <p>Loading...</p>
   );
 }
 export default CreateProduct;

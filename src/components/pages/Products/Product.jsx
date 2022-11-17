@@ -40,6 +40,7 @@ function Product() {
                 {" "}
                 <h3>ID: {product._id}</h3>
                 <p>Product: {product.name}</p>
+                <p>Category: {product.category.name}</p>
                 <p>Price: {product.price}</p>
                 <p>Stock: {product.stock} </p>
                 <p>{product.description}</p>
