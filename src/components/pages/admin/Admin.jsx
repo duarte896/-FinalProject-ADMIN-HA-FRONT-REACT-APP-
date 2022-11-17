@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
+import Button from "react-bootstrap/Button";
 import Sidebar from "../../Sidebar";
+import DeleteAdmin from "./DeleteAdmin";
 
 function Admin() {
   const [admin, setAdmin] = useState({});
+  const [show, setShow] = useState(false);
   const params = useParams();
+  const handleShow = () => setShow(true);
 
   useEffect(() => {
     const getData = async () => {
@@ -30,7 +34,15 @@ function Admin() {
           <h3>ID: {admin._id}</h3>
           <p>Name: {admin.firstname + " " + admin.lastname}</p>
           <p>Email: {admin.email}</p>
+
+          <Button variant="danger" onClick={handleShow}>
+            Delete admin
+          </Button>
+          <Button variant="success" onClick={handleShow}>
+            Update info
+          </Button>
         </main>
+        <DeleteAdmin admin={admin} show={show} setShow={setShow} />
       </div>
     </div>
   ) : (

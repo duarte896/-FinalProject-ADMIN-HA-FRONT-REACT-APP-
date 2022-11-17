@@ -18,6 +18,7 @@ import Admin from "./components/pages/admin/Admin";
 import Product from "./components/pages/products/Product";
 import NoMatch from "./components/NoMatch";
 import EditProduct from "./components/forms/EditProduct";
+import Category from "./components/pages/categories/Category";
 
 function App() {
   const user = useSelector((state) => state.user);
@@ -38,6 +39,7 @@ function App() {
         <Route path="/products/:slug" element={<Product />} />
         <Route path="/products/create" element={<CreateProduct />} />
         <Route path="/products/edit/:slug" element={<EditProduct />} />
+        <Route path="/categories/:name" element={<Category />} />
         <Route path="/customers/:id" element={<Customer />} />
         <Route path="/admin/create" element={<CreateAdmin />} />
         <Route path="/admins/:id" element={<Admin />} />

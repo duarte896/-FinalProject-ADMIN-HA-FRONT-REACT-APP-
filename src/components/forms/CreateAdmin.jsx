@@ -19,7 +19,7 @@ function CreateAdmin() {
     if (password === confirmedPassword) {
       try {
         await axios({
-          url: `${process.env.REACT_APP_API_URL}/admin/admins`,
+          url: `${process.env.REACT_APP_API_URL}/admins`,
           method: "POST",
           data: {
             firstname,

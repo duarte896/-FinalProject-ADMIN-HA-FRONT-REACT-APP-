@@ -31,7 +31,7 @@ function Products(params) {
               type="button"
               className="btn btn-sm btn-outline-secondary"
             >
-              Add Product
+              Create new product
             </Link>
           </div>
 
@@ -40,6 +40,7 @@ function Products(params) {
               <thead>
                 <tr>
                   <th scope="col">Product code</th>
+                  <th scope="col">Name</th>
                   <th scope="col">Name</th>
                   <th scope="col">Stock</th>
                   <th scope="col">Last Update</th>
@@ -52,6 +53,7 @@ function Products(params) {
                     <tr key={item._id}>
                       <td>{item._id}</td>
                       <td>{item.name}</td>
+                      <td>{item.price}</td>
                       <td>{item.stock}</td>
                       <td>{item.updatedAt}</td>
                       <td>

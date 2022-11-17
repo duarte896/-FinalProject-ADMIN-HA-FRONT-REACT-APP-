@@ -3,35 +3,61 @@ import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "../../Sidebar";
 
-function Customer() {
-  const [user, setUser] = useState({});
+function Category() {
+  const [category, setCategory] = useState({});
   const params = useParams();
 
   useEffect(() => {
     const getData = async () => {
       const response = await axios({
         method: "GET",
-        url: `http://localhost:8000/users/${params.id}`,
+        url: `http://localhost:8000/categories/${params.name}`,
       });
-      setUser(response.data);
+      setCategory(response.data);
     };
     getData();
   }, []);
-
-  return user ? (
+  
+  return category ? (
     <div className="container-fluid">
       <div className="row">
         <Sidebar />
         <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
           <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 className="h2">User Info</h1>
+            <h1 className="h2">Category Info</h1>
+          </div>
+          <div className="d-flex">
+            <div>
+              <h3>ID: {category._id}</h3>
+              <p>Category: {category.name}</p>
+            </div>
+            <div>
+              <img src={category.image} alt="" />
+            </div>
           </div>
 
-          <h3>ID: {user._id}</h3>
-          <p>User: {user.firstname + " " + user.lastname}</p>
-          <p>Shipping Adress: {user.address} </p>
-          <p>Cell-phone: {user.cellphone}</p>
-          <p>Email: {user.email}</p>
+          <table className="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Product Id</th>
+                <th scope="col">View</th>
+              </tr>
+            </thead>
+            <tbody>
+              {category.products.map((item) => {
+                return (
+                  <tr key={item._id}>
+                    <td>{item.name}</td>
+                    <td>{item._id}</td>
+                    <td>
+                      <Link to={`/products/${item.slug}`}>Enter</Link>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </main>
       </div>
     </div>
@@ -39,4 +65,4 @@ function Customer() {
     <p>Loading...</p>
   );
 }
-export default Customer;
+export default Category;
