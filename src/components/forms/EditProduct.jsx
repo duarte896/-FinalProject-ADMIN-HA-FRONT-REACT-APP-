@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import Sidebar from "../Sidebar";
 import { useNavigate, useParams } from "react-router-dom";
 
-function CreateProduct() {
+function EditProduct() {
   const params = useParams();
   const [product, setProduct] = useState("");
   const [name, setName] = useState("");
@@ -65,7 +65,7 @@ function CreateProduct() {
           category,
         },
       });
-      navigate(`/products/${params.slug}`);
+      navigate(`/products`);
     } catch (error) {
       console.log(error);
     }
@@ -221,4 +221,4 @@ function CreateProduct() {
     <p>Loading...</p>
   );
 }
-export default CreateProduct;
+export default EditProduct;

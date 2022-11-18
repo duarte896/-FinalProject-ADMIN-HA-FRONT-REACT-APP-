@@ -25,7 +25,7 @@ function Admins() {
           <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 className="h2">Admins</h1>
             <Link
-              to={"/admin/create"}
+              to={"/admins/create"}
               type="button"
               className="btn btn-sm btn-outline-secondary"
             >
