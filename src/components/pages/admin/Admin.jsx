@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Sidebar from "../../Sidebar";
@@ -10,7 +10,7 @@ function Admin() {
   const [show, setShow] = useState(false);
   const params = useParams();
   const handleShow = () => setShow(true);
-
+  const navigate = useNavigate();
   useEffect(() => {
     const getData = async () => {
       const response = await axios({
@@ -38,8 +38,11 @@ function Admin() {
           <Button variant="danger" onClick={handleShow}>
             Delete admin
           </Button>
-          <Button variant="success" onClick={handleShow}>
-            Update info
+          <Button
+            variant="success"
+            onClick={() => navigate(`/admins/edit/${admin._id}`)}
+          >
+            Update Admin
           </Button>
         </main>
         <DeleteAdmin admin={admin} show={show} setShow={setShow} />

@@ -18,6 +18,7 @@ import Product from "./components/pages/products/Product";
 import NoMatch from "./components/NoMatch";
 import EditProduct from "./components/forms/EditProduct";
 import Category from "./components/pages/categories/Category";
+import EditAdmin from "./components/forms/EditAdmin";
 
 function App() {
   const currentPage = useLocation();
@@ -40,8 +41,9 @@ function App() {
         <Route path="/products/edit/:slug" element={<EditProduct />} />
         <Route path="/categories/:name" element={<Category />} />
         <Route path="/customers/:id" element={<Customer />} />
-        <Route path="/admin/create" element={<CreateAdmin />} />
+        <Route path="/admins/create" element={<CreateAdmin />} />
         <Route path="/admins/:id" element={<Admin />} />
+        <Route path="/admins/edit/:id" element={<EditAdmin />} />
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </div>

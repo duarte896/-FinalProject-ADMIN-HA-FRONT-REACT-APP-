@@ -39,11 +39,12 @@ function Products(params) {
             <table className="table table-striped table-sm">
               <thead>
                 <tr>
-                  <th scope="col">Product code</th>
                   <th scope="col">Name</th>
-                  <th scope="col">Name</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Price</th>
                   <th scope="col">Stock</th>
                   <th scope="col">Last Update</th>
+                  <th scope="col">Product Id</th>
                   <th scope="col">View Product</th>
                 </tr>
               </thead>
@@ -51,11 +52,12 @@ function Products(params) {
                 {data.map((item) => {
                   return (
                     <tr key={item._id}>
-                      <td>{item._id}</td>
                       <td>{item.name}</td>
-                      <td>{item.price}</td>
+                      <td>{item.category.name}</td>
+                      <td>${item.price}</td>
                       <td>{item.stock}</td>
                       <td>{item.updatedAt}</td>
+                      <td>{item._id}</td>
                       <td>
                         <Link to={`/products/${item.slug}`}>Enter</Link>
                       </td>

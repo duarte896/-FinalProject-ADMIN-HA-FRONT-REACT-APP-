@@ -1,0 +1,44 @@
+#pending {
+  border: black 1px solid;
+  font-size: medium;
+  padding: 4px;
+  margin-left: 10px;
+  border-radius: 15px;
+  background-color: rgb(254, 104, 104);
+}
+
+#placed {
+  border: black 1px solid;
+  font-size: medium;
+  padding: 4px;
+  margin-left: 10px;
+  border-radius: 15px;
+  background-color: rgb(254, 216, 104);
+}
+
+#shipped {
+  border: black 1px solid;
+  font-size: medium;
+  padding: 4px;
+  margin-left: 10px;
+  border-radius: 15px;
+  background-color: rgb(129, 222, 79);
+}
+
+#delivered {
+  border: black 1px solid;
+  font-size: medium;
+  padding: 4px;
+  margin-left: 10px;
+  border-radius: 15px;
+  color: white;
+  background-color: rgb(21, 16, 16);
+}
+
+#update {
+  margin-left: 10px;
+  border: none;
+  background-color: transparent;
+  color: black;
+  padding-bottom: 3px;
+}

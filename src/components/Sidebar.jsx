@@ -1,4 +1,13 @@
 import { Link } from "react-router-dom";
+import {
+  BsHouseDoor,
+  BsBoxSeam,
+  BsTruck,
+  BsLock,
+  BsPerson,
+  BsTextLeft,
+} from "react-icons/bs";
+
 function Sidebar() {
   return (
     <nav
@@ -6,20 +15,20 @@ function Sidebar() {
       className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
     >
       <div className="position-sticky pt-3 sidebar-sticky">
-        <ul className="nav flex-column">
+        <ul className="nav flex-column" style={{ fontSize: "1.1rem" }}>
           <li className="nav-item">
             <Link to={"/"} className="nav-link active" aria-current="page">
               <span
                 data-feather="AdminLayout"
                 className="align-text-bottom"
               ></span>
-              Dashboard
+              <BsHouseDoor /> Dashboard
             </Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link" to={"/orders"}>
               <span data-feather="file" className="align-text-bottom"></span>
-              Orders
+              <BsTruck /> Orders
             </Link>
           </li>
           <li className="nav-item">
@@ -28,7 +37,7 @@ function Sidebar() {
                 data-feather="shopping-cart"
                 className="align-text-bottom"
               ></span>
-              Products
+              <BsBoxSeam /> Products
             </Link>
           </li>
           <li className="nav-item">
@@ -37,19 +46,19 @@ function Sidebar() {
                 data-feather="shopping-cart"
                 className="align-text-bottom"
               ></span>
-              Categories
+              <BsTextLeft /> Categories
             </Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link" to={"/customers"}>
               <span data-feather="users" className="align-text-bottom"></span>
-              Customers
+              <BsPerson /> Customers
             </Link>
           </li>
           <li className="nav-item">
             <Link className="nav-link" to={"/admins"}>
               <span data-feather="users" className="align-text-bottom"></span>
-              Admins
+              <BsLock /> Admins
             </Link>
           </li>
         </ul>
