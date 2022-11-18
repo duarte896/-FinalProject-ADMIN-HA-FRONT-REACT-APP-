@@ -7,15 +7,20 @@ import Modal from "react-bootstrap/Modal";
 import { BsGear } from "react-icons/bs";
 
 function Order() {
+  const [update, setUpdate] = useState(true);
   const [order, setOrder] = useState();
   const [orderStatus, setOrderStatus] = useState(0);
   const [products, setProducts] = useState();
   const [user, setUser] = useState();
   const params = useParams();
+  const [orderDefaults, setOrderDefaults] = useState(null);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    setShow(true);
+    setOrderStatus("Pending payment");
+  };
 
   useEffect(() => {
     const getData = async () => {
@@ -24,14 +29,16 @@ function Order() {
         url: `http://localhost:8000/orders/${params.id}`,
       });
 
-      setOrder(response.data);
-      setProducts(response.data.products);
-      setUser(response.data.user);
+      setOrder(response.data.order);
+      setProducts(response.data.order.products);
+      setUser(response.data.order.user);
+      setOrderDefaults(response.data.orderdefaults);
     };
     getData();
-  }, []);
+  }, [update]);
 
-  const updateStatus = async () => {
+  const updateStatus = async (event) => {
+    event.preventDefault();
     const response = await axios({
       url: `${process.env.REACT_APP_API_URL}/orders/${order._id}`,
       method: "PATCH",
@@ -39,9 +46,9 @@ function Order() {
         orderStatus,
       },
     });
+    setUpdate(!update);
     handleClose();
   };
-  console.log(orderStatus);
   return order ? (
     <div className="container-fluid">
       <div className="row">
@@ -55,7 +62,7 @@ function Order() {
             {order.orderStatus === "Pending payment" && (
               <span id="pending">{order.orderStatus}</span>
             )}
-            {order.orderStatus === "Order placed" && (
+            {order.orderStatus === "Order pleaced" && (
               <span id="placed">{order.orderStatus}</span>
             )}
             {order.orderStatus === "Shipped" && (
@@ -77,17 +84,16 @@ function Order() {
             </Modal.Header>
             <Modal.Body>
               <select onChange={(event) => setOrderStatus(event.target.value)}>
-                <option value={"Pending payment"}>Pending payment</option>
-                <option value={"Order pleaced"}>Order placed</option>
-                <option value={"Shipped"}>Shipped</option>
-                <option value={"Delivered"}>Delivered</option>
+                {orderDefaults.map((item) => {
+                  return <option value={item}>{item}</option>;
+                })}
               </select>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>
                 Close
               </Button>
-              <Button variant="primary" onClick={updateStatus}>
+              <Button type="submit" variant="primary" onClick={updateStatus}>
                 Save Changes
               </Button>
             </Modal.Footer>

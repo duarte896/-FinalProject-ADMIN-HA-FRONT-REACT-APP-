@@ -4,6 +4,7 @@ import axios from "axios";
 import "./Orders.css";
 import "../../../App.css";
 import Sidebar from "../../Sidebar";
+import { NavItem } from "react-bootstrap";
 
 function Orders(params) {
   const [data, setData] = useState([]);
@@ -45,7 +46,20 @@ function Orders(params) {
                   return (
                     <tr key={item._id}>
                       <td>{item._id}</td>
-                      <td>{item.orderStatus}</td>
+                      <td>
+                        {item.orderStatus === "Pending payment" && (
+                          <span id="pending">{item.orderStatus}</span>
+                        )}
+                        {item.orderStatus === "Order pleaced" && (
+                          <span id="placed">{item.orderStatus}</span>
+                        )}
+                        {item.orderStatus === "Shipped" && (
+                          <span id="shipped">{item.orderStatus}</span>
+                        )}
+                        {item.orderStatus === "Delivered" && (
+                          <span id="delivered">{item.orderStatus}</span>
+                        )}
+                      </td>
                       <td>{item.updatedAt}</td>
                       <td>information</td>
                       <td>{item.userId}</td>
