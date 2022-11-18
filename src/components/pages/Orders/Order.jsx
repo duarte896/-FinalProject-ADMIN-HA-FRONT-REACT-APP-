@@ -8,7 +8,7 @@ import { BsGear } from "react-icons/bs";
 
 function Order() {
   const [order, setOrder] = useState();
-  const [orderTotal, setOrderTotal] = useState(0);
+  const [orderStatus, setOrderStatus] = useState(0);
   const [products, setProducts] = useState();
   const [user, setUser] = useState();
   const params = useParams();
@@ -31,6 +31,17 @@ function Order() {
     getData();
   }, []);
 
+  const updateStatus = async () => {
+    const response = await axios({
+      url: `${process.env.REACT_APP_API_URL}/orders/${order._id}`,
+      method: "PATCH",
+      data: {
+        orderStatus,
+      },
+    });
+    handleClose();
+  };
+  console.log(orderStatus);
   return order ? (
     <div className="container-fluid">
       <div className="row">
@@ -65,15 +76,18 @@ function Order() {
               <Modal.Title>Update order status</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <select value={}>
-                <option value={}></option>
+              <select onChange={(event) => setOrderStatus(event.target.value)}>
+                <option value={"Pending payment"}>Pending payment</option>
+                <option value={"Order pleaced"}>Order placed</option>
+                <option value={"Shipped"}>Shipped</option>
+                <option value={"Delivered"}>Delivered</option>
               </select>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>
                 Close
               </Button>
-              <Button variant="primary" onClick={}>
+              <Button variant="primary" onClick={updateStatus}>
                 Save Changes
               </Button>
             </Modal.Footer>
