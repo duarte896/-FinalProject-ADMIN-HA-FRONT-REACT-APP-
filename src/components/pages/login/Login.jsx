@@ -19,7 +19,7 @@ function Login() {
     e.preventDefault();
     try {
       const response = await axios({
-        url: `${process.env.REACT_APP_API_URL}/admin/tokens`,
+        url: `${process.env.REACT_APP_API_URL}/admins/tokens`,
         method: "POST",
         data: { email, password },
       });
@@ -64,7 +64,6 @@ function Login() {
                     type="password"
                     name="password"
                     className={styles.form_font + " form-control"}
-                    id="password"
                     placeholder="Password"
                     onChange={(event) => setPassword(event.target.value)}
                   />

@@ -1,5 +1,6 @@
 import Orders from "../orders/Orders";
 import Sidebar from "../../Sidebar";
+
 function Home() {
   return (
     <div className="container-fluid">

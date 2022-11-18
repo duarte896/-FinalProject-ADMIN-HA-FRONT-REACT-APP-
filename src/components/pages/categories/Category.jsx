@@ -1,12 +1,16 @@
+import styles from "./Category.module.css";
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Sidebar from "../../Sidebar";
+import DeleteCategory from "./DeleteCategory";
 
 function Category() {
   const [category, setCategory] = useState({});
   const [products, setProducts] = useState([]);
+  const handleShow = () => setShow(true);
+  const [show, setShow] = useState(false);
 
   const params = useParams();
 
@@ -30,19 +34,29 @@ function Category() {
           <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 className="h2">Category Info</h1>
           </div>
-          <div className="d-flex">
+          <div className="d-flex justify-content-between mb-5">
             <div>
-              <h3>ID: {category._id}</h3>
-              <p>Category: {category.name}</p>
-              <Button variant="danger">Delete Category</Button>
+              <h3>{category.name}</h3>
+              <p>ID: {category._id}</p>
             </div>
-            <div>
-              <img src={category.image} alt="" />
+            <div className="">
+              <Link
+                to={`/categories/edit/${category.name}`}
+                className="btn btn-success mb-2"
+              >
+                Update Category
+              </Link>
+              <Button
+                className="d-block m-0"
+                variant="danger"
+                onClick={handleShow}
+              >
+                Delete Category
+              </Button>
             </div>
           </div>
-
+          <h3>Products({products.length})</h3>
           <table className="table table-striped table-sm">
-            <h3>Products({products.length})</h3>
             <thead>
               <tr>
                 <th scope="col">Name</th>
@@ -65,6 +79,7 @@ function Category() {
             </tbody>
           </table>
         </main>
+        <DeleteCategory category={category} show={show} setShow={setShow} />
       </div>
     </div>
   ) : (
