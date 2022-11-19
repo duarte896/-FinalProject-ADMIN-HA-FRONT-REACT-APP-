@@ -62,7 +62,7 @@ function Order() {
             {order.orderStatus === "Pending payment" && (
               <span id="pending">{order.orderStatus}</span>
             )}
-            {order.orderStatus === "Order pleaced" && (
+            {order.orderStatus === "Order placed" && (
               <span id="placed">{order.orderStatus}</span>
             )}
             {order.orderStatus === "Shipped" && (

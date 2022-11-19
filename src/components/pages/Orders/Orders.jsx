@@ -50,7 +50,7 @@ function Orders(params) {
                         {item.orderStatus === "Pending payment" && (
                           <span id="pending">{item.orderStatus}</span>
                         )}
-                        {item.orderStatus === "Order pleaced" && (
+                        {item.orderStatus === "Order placed" && (
                           <span id="placed">{item.orderStatus}</span>
                         )}
                         {item.orderStatus === "Shipped" && (
