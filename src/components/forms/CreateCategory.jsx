@@ -3,19 +3,21 @@ import axios from "axios";
 import { Container } from "react-bootstrap";
 import { useState } from "react";
 import Sidebar from "../Sidebar";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function CreateCategory() {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const navigate = useNavigate();
+  const token = useSelector((state) => state.user.user);
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const response = await axios({
         url: `${process.env.REACT_APP_API_URL}/categories`,
         method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
         data: {
           name,
         },

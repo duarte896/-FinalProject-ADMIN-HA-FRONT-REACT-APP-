@@ -3,6 +3,8 @@ import axios from "axios";
 import "../../../App.css";
 import { Link } from "react-router-dom";
 import Sidebar from "../../Sidebar";
+import { BiSearch } from "react-icons/bi";
+import styles from "./Product.module.css";
 
 function Products(params) {
   const [data, setData] = useState([]);
@@ -11,8 +13,8 @@ function Products(params) {
     const getData = async () => {
       const response = await axios({
         method: "GET",
-        url: `http://localhost:8000/products`,
-        headers: { Authentication: `Berarer` },
+        url: `${process.env.REACT_APP_API_URL}/products`,
+        headers: { Authentication: `Bearerer` },
       });
       setData(response.data);
     };
@@ -58,8 +60,10 @@ function Products(params) {
                       <td>{item.stock}</td>
                       <td>{item.updatedAt}</td>
                       <td>{item._id}</td>
-                      <td>
-                        <Link to={`/products/${item.slug}`}>Enter</Link>
+                      <td className={styles.viewProduct}>
+                        <Link to={`/products/${item.slug}`}>
+                          <BiSearch />
+                        </Link>
                       </td>
                     </tr>
                   );

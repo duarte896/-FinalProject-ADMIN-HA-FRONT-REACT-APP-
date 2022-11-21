@@ -12,7 +12,7 @@ function Product() {
     const getData = async () => {
       const response = await axios({
         method: "GET",
-        url: `http://localhost:8000/products/${params.slug}`,
+        url: `${process.env.REACT_APP_API_URL}/products/${params.slug}`,
       });
       setProduct(response.data);
     };

@@ -2,15 +2,18 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "../../Sidebar";
+import { useSelector } from "react-redux";
 
 function Customer() {
   const [user, setUser] = useState();
+  const token = useSelector((state) => state.user.user);
   const params = useParams();
+
   useEffect(() => {
     const getData = async () => {
       const response = await axios({
         method: "GET",
-        url: `http://localhost:8000/users/${params.id}`,
+        url: `${process.env.REACT_APP_API_URL}/users/${params.id}`,
       });
       setUser(response.data);
     };

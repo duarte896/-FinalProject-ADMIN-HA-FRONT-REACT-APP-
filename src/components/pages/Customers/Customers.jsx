@@ -3,6 +3,9 @@ import axios from "axios";
 import "../../../App.css";
 import { Link } from "react-router-dom";
 import Sidebar from "../../Sidebar";
+import { BiSearch } from "react-icons/bi";
+import styles from "./Customer.module.css";
+import { useSelector } from "react-redux";
 
 function Users(params) {
   const [data, setData] = useState([]);
@@ -11,7 +14,7 @@ function Users(params) {
     const getData = async () => {
       const response = await axios({
         method: "GET",
-        url: `http://localhost:8000/users`,
+        url: `${process.env.REACT_APP_API_URL}/users`,
       });
       setData(response.data);
     };
@@ -43,8 +46,10 @@ function Users(params) {
                       <td>{item._id}</td>
                       <td>{item.firstname}</td>
                       <td>{item.lastname}</td>
-                      <td>
-                        <Link to={`/customers/${item._id}`}>Enter</Link>
+                      <td className={styles.viewCustomer}>
+                        <Link to={`/customers/${item._id}`}>
+                          <BiSearch />
+                        </Link>
                       </td>
                     </tr>
                   );

@@ -4,7 +4,7 @@ import axios from "axios";
 import styles from "./Orders.module.css";
 import "../../../App.css";
 import Sidebar from "../../Sidebar";
-import { NavItem } from "react-bootstrap";
+import { BiSearch } from "react-icons/bi";
 
 function Orders(params) {
   const [data, setData] = useState([]);
@@ -13,7 +13,7 @@ function Orders(params) {
     const getData = async () => {
       const response = await axios({
         method: "GET",
-        url: `http://localhost:8000/orders`,
+        url: `${process.env.REACT_APP_API_URL}/orders`,
         headers: { Authentication: `Berarer` },
       });
       setData(response.data);
@@ -44,7 +44,7 @@ function Orders(params) {
               <tbody>
                 {data.map((item) => {
                   return (
-                    <tr key={item._id}>
+                    <tr className={styles.order} key={item._id}>
                       <td>{item._id}</td>
                       <td>
                         {item.orderStatus === "Pending payment" && (
@@ -69,10 +69,12 @@ function Orders(params) {
                         )}
                       </td>
                       <td>{item.updatedAt}</td>
-                      <td>information</td>
-                      <td>{item.userId}</td>
-                      <td>
-                        <Link to={`/orders/${item._id}`}>Enter</Link>
+                      <td>${item.orderTotal}</td>
+                      <td>{item.user}</td>
+                      <td className={styles.viewOrder}>
+                        <Link to={`/orders/${item._id}`}>
+                          <BiSearch />
+                        </Link>
                       </td>
                     </tr>
                   );

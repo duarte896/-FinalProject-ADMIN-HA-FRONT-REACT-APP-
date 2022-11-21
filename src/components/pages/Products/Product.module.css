@@ -2,3 +2,7 @@
   object-fit: cover;
   width: 50%;
 }
+
+.viewProduct {
+  font-size: 1.2rem;
+}

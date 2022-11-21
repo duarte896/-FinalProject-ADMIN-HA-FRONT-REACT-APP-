@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import Sidebar from "../Sidebar";
 import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function EditProduct() {
   const params = useParams();
@@ -18,12 +19,14 @@ function EditProduct() {
   const [categories, setCategories] = useState();
   const [category, setCategory] = useState();
   const navigate = useNavigate();
+  const token = useSelector((state) => state.user.user);
 
   useEffect(() => {
     const getCategories = async () => {
       const response = await axios({
         url: `${process.env.REACT_APP_API_URL}/categories`,
         method: "GET",
+        headers: { Authorization: `Bearer ${token}` },
       });
       setCategories(response.data);
     };
@@ -34,7 +37,8 @@ function EditProduct() {
     const getData = async () => {
       const response = await axios({
         method: "GET",
-        url: `http://localhost:8000/products/${params.slug}`,
+        url: `${process.env.REACT_APP_API_URL}/products/${params.slug}`,
+        headers: { Authorization: `Bearer ${token}` },
       });
       console.log(response.data);
       setProduct(response.data);

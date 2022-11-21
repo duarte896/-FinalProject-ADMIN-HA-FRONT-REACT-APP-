@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import Sidebar from "../Sidebar";
 import { useNavigate, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function CreateProduct() {
   const params = useParams();
@@ -11,8 +12,8 @@ function CreateProduct() {
   const [firstname, setFirstname] = useState(null);
   const [lastname, setLastname] = useState(null);
   const [email, setEmail] = useState(null);
-  // const [password, setPassword] = useState(""); Para cambiar contraseña mas adelante si da el tiempo.
-  // const [password2, setPassword2] = useState("");
+  const token = useSelector((state) => state.user.user);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -35,6 +36,7 @@ function CreateProduct() {
       const response = await axios({
         url: `${process.env.REACT_APP_API_URL}/admins/${admin._id}`,
         method: "PATCH",
+        headers: { Authorization: `Bearer ${token}` },
         data: {
           firstname,
           lastname,

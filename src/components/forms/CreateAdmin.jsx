@@ -4,6 +4,7 @@ import { Container } from "react-bootstrap";
 import { useState } from "react";
 import Sidebar from "../Sidebar";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function CreateAdmin() {
   const [firstname, setFirstname] = useState("");
@@ -12,6 +13,7 @@ function CreateAdmin() {
   const [password, setPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
   const [incorrectPassword, setIncorrectPassword] = useState(false);
+  const token = useSelector((state) => state.user.user);
   const naviagate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -21,6 +23,7 @@ function CreateAdmin() {
         await axios({
           url: `${process.env.REACT_APP_API_URL}/admins`,
           method: "POST",
+          headers: { Authorization: `Bearer ${token}` },
           data: {
             firstname,
             lastname,

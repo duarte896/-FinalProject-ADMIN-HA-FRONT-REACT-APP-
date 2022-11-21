@@ -3,21 +3,24 @@ import axios from "axios";
 import { Container } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import Sidebar from "../Sidebar";
-import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function EditCategory() {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const [category, setCategory] = useState();
   const params = useParams();
+  const token = useSelector((state) => state.user.user);
   const navigate = useNavigate();
+
   useEffect(() => {
     const getCategory = async () => {
       const response = await axios({
         url: `${process.env.REACT_APP_API_URL}/categories/${params.name}`,
         method: "GET",
+        headers: { Authorization: `Bearer ${token}` },
       });
       setCategory(response.data);
       setName(response.data.name);

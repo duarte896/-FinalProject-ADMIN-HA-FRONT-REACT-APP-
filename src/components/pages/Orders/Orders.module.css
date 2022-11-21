@@ -42,3 +42,11 @@
   color: black;
   padding-bottom: 3px;
 }
+
+.viewOrder {
+  font-size: 1.2rem;
+}
+
+.order {
+  padding: 5px;
+}

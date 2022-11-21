@@ -5,20 +5,22 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Sidebar from "../../Sidebar";
 import DeleteCategory from "./DeleteCategory";
+import { useSelector } from "react-redux";
 
 function Category() {
   const [category, setCategory] = useState({});
   const [products, setProducts] = useState([]);
   const handleShow = () => setShow(true);
   const [show, setShow] = useState(false);
-
+  const token = useSelector((state) => state.user.user);
   const params = useParams();
 
   useEffect(() => {
     const getData = async () => {
       const response = await axios({
         method: "GET",
-        url: `http://localhost:8000/categories/${params.name}`,
+        url: `${process.env.REACT_APP_API_URL}/categories/${params.name}`,
+        headers: { Authorization: `Bearer ${token}` },
       });
       setCategory(response.data);
       setProducts(response.data.products);

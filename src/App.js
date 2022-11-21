@@ -27,7 +27,6 @@ import EditAdmin from "./components/forms/EditAdmin";
 
 function App() {
   const admin = useSelector((state) => state.user);
-  console.log(admin.user);
 
   const currentPage = useLocation();
   const pagesWithoutNavbar = ["/login"];

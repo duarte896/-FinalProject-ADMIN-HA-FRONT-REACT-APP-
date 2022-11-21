@@ -4,6 +4,7 @@ import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Sidebar from "../../Sidebar";
 import DeleteAdmin from "./DeleteAdmin";
+import { useSelector } from "react-redux";
 
 function Admin() {
   const [admin, setAdmin] = useState({});
@@ -11,11 +12,14 @@ function Admin() {
   const params = useParams();
   const handleShow = () => setShow(true);
   const navigate = useNavigate();
+  const token = useSelector((state) => state.user.user);
+
   useEffect(() => {
     const getData = async () => {
       const response = await axios({
         method: "GET",
-        url: `http://localhost:8000/admins/${params.id}`,
+        url: `${process.env.REACT_APP_API_URL}/admins/${params.id}`,
+        headers: { Authorization: `Bearer ${token}` },
       });
       setAdmin(response.data);
     };

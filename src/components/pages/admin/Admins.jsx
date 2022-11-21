@@ -2,8 +2,12 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "../../Sidebar";
+import { BiSearch } from "react-icons/bi";
+import styles from "./Admins.module.css";
+import { useSelector } from "react-redux";
 
 function Admins() {
+  const token = useSelector((state) => state.user.user);
   const [admins, setAdmins] = useState();
   const params = useParams();
 
@@ -11,7 +15,8 @@ function Admins() {
     const getData = async () => {
       const response = await axios({
         method: "GET",
-        url: `http://localhost:8000/admins`,
+        url: `${process.env.REACT_APP_API_URL}/admins`,
+        headers: { Authorization: `Bearer ${token}` },
       });
       setAdmins(response.data);
     };
@@ -49,8 +54,10 @@ function Admins() {
                       <td>{item.firstname}</td>
                       <td>{item.lastname}</td>
                       <td>{item._id}</td>
-                      <td>
-                        <Link to={`/admins/${item._id}`}>Enter</Link>
+                      <td className={styles.viewAdmin}>
+                        <Link to={`/admins/${item._id}`}>
+                          <BiSearch />
+                        </Link>
                       </td>
                     </tr>
                   );

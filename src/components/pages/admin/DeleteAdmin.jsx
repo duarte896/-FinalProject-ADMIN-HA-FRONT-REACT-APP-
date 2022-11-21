@@ -3,8 +3,10 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function DeleteAdmin({ admin, show, setShow }) {
+  const token = useSelector((state) => state.user.user);
   const navigate = useNavigate();
   const handleClose = () => setShow(false);
 
@@ -13,6 +15,7 @@ function DeleteAdmin({ admin, show, setShow }) {
       await axios({
         url: `${process.env.REACT_APP_API_URL}/admins/${admin._id}`,
         method: "DELETE",
+        headers: { Authorization: `Bearer ${token}` },
       });
     } catch (error) {
       console.log(error);

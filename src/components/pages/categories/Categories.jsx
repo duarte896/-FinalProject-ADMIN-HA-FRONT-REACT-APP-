@@ -3,16 +3,21 @@ import axios from "axios";
 import "../../../App.css";
 import { Link, useParams } from "react-router-dom";
 import Sidebar from "../../Sidebar";
+import { BiSearch } from "react-icons/bi";
+import styles from "./Category.module.css";
+import { useSelector } from "react-redux";
 
 function Users() {
   const [categories, setCategories] = useState([]);
+  const token = useSelector((state) => state.user.user);
   const params = useParams();
 
   useEffect(() => {
     const getData = async () => {
       const response = await axios({
         method: "GET",
-        url: `http://localhost:8000/categories`,
+        url: `${process.env.REACT_APP_API_URL}/categories`,
+        headers: { Authorization: `Bearer ${token}` },
       });
       setCategories(response.data);
     };
@@ -51,8 +56,10 @@ function Users() {
                     <tr key={item._id}>
                       <td>{item.name}</td>
                       <td>{item._id}</td>
-                      <td>
-                        <Link to={`/categories/${item.name}`}>Enter</Link>
+                      <td className={styles.viewCategory}>
+                        <Link to={`/categories/${item.name}`}>
+                          <BiSearch />
+                        </Link>
                       </td>
                     </tr>
                   );
