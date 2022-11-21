@@ -73,8 +73,8 @@ function CreateAdmin() {
                   value={lastname}
                   type="text"
                   className="form-control"
-                  id="type"
-                  name="type"
+                  id="lastname"
+                  name="lastname"
                   onChange={(event) => setLastname(event.target.value)}
                 />
               </div>
@@ -86,8 +86,8 @@ function CreateAdmin() {
                   value={email}
                   type="email"
                   className="form-control"
-                  id="price"
-                  name="price"
+                  id="email"
+                  name="email"
                   onChange={(event) => setEmail(event.target.value)}
                 />
               </div>
@@ -99,8 +99,8 @@ function CreateAdmin() {
                   value={password}
                   type="passwword"
                   className="form-control"
-                  id="stock"
-                  name="stock"
+                  id="password"
+                  name="password"
                   onChange={(event) => setPassword(event.target.value)}
                 />
               </div>
@@ -112,8 +112,8 @@ function CreateAdmin() {
                   value={confirmedPassword}
                   type="passwword"
                   className="form-control"
-                  id="stock"
-                  name="stock"
+                  id="confirmedPassword"
+                  name="confirmedPassword"
                   onChange={(event) => setConfirmedPassword(event.target.value)}
                 />
               </div>

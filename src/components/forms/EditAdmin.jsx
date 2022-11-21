@@ -80,8 +80,8 @@ function CreateProduct() {
                   value={lastname}
                   type="text"
                   className="form-control"
-                  id="type"
-                  name="type"
+                  id="lastname"
+                  name="lastname"
                   onChange={(event) => setLastname(event.target.value)}
                 />
               </div>
@@ -93,8 +93,8 @@ function CreateProduct() {
                   value={email}
                   type="email"
                   className="form-control"
-                  id="price"
-                  name="price"
+                  id="email"
+                  name="email"
                   onChange={(event) => setEmail(event.target.value)}
                 />
               </div>

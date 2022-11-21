@@ -77,14 +77,6 @@ function Login() {
                   Login
                 </button>
               </form>
-              <p className={styles.linkToRegister}>
-                Don't have an account?{" "}
-                <span>
-                  <Link className={styles.signup} to="/register">
-                    Sign up
-                  </Link>
-                </span>
-              </p>
             </div>
           </div>
         </div>
