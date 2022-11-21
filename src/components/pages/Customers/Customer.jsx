@@ -14,6 +14,7 @@ function Customer() {
       const response = await axios({
         method: "GET",
         url: `${process.env.REACT_APP_API_URL}/users/${params.id}`,
+        headers: { Authorization: `Bearer ${token}` },
       });
       setUser(response.data);
     };

@@ -9,12 +9,14 @@ import { useSelector } from "react-redux";
 
 function Users(params) {
   const [data, setData] = useState([]);
+  const token = useSelector((state) => state.user.user);
 
   useEffect(() => {
     const getData = async () => {
       const response = await axios({
         method: "GET",
         url: `${process.env.REACT_APP_API_URL}/users`,
+        headers: { Authorization: `Bearer ${token}` },
       });
       setData(response.data);
     };

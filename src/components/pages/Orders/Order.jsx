@@ -6,6 +6,7 @@ import Sidebar from "../../Sidebar";
 import { Button } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 import { BsGear } from "react-icons/bs";
+import { useSelector } from "react-redux";
 
 function Order() {
   const [update, setUpdate] = useState(true);
@@ -16,6 +17,7 @@ function Order() {
   const params = useParams();
   const [orderDefaults, setOrderDefaults] = useState(null);
   const [show, setShow] = useState(false);
+  const token = useSelector((state) => state.user.user);
 
   const handleClose = () => setShow(false);
   const handleShow = () => {
@@ -27,7 +29,8 @@ function Order() {
     const getData = async () => {
       const response = await axios({
         method: "GET",
-        url: `http://localhost:8000/orders/${params.id}`,
+        url: `${process.env.REACT_APP_API_URL}/orders/${params.id}`,
+        headers: { Authorization: `Bearer ${token}` },
       });
 
       setOrder(response.data.order);
@@ -43,6 +46,7 @@ function Order() {
     const response = await axios({
       url: `${process.env.REACT_APP_API_URL}/orders/${order._id}`,
       method: "PATCH",
+      headers: { Authorization: `Bearer ${token}` },
       data: {
         orderStatus,
       },

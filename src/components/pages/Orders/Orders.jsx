@@ -5,16 +5,18 @@ import styles from "./Orders.module.css";
 import "../../../App.css";
 import Sidebar from "../../Sidebar";
 import { BiSearch } from "react-icons/bi";
+import { useSelector } from "react-redux";
 
 function Orders(params) {
   const [data, setData] = useState([]);
+  const token = useSelector((state) => state.user.user);
 
   useEffect(() => {
     const getData = async () => {
       const response = await axios({
         method: "GET",
         url: `${process.env.REACT_APP_API_URL}/orders`,
-        headers: { Authentication: `Berarer` },
+        headers: { Authorization: `Bearer ${token}` },
       });
       setData(response.data);
     };

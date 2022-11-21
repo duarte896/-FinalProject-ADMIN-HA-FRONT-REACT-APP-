@@ -3,16 +3,19 @@ import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "../../Sidebar";
 import Styles from "./Product.module.css";
+import { useSelector } from "react-redux";
 
 function Product() {
   const [product, setProduct] = useState();
   const params = useParams();
+  const token = useSelector((state) => state.user.user);
 
   useEffect(() => {
     const getData = async () => {
       const response = await axios({
         method: "GET",
         url: `${process.env.REACT_APP_API_URL}/products/${params.slug}`,
+        headers: { Authorization: `Bearer ${token}` },
       });
       setProduct(response.data);
     };
