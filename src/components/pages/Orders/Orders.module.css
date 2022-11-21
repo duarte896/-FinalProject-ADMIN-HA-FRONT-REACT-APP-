@@ -1,38 +1,25 @@
 .pending {
-  border: black 1px solid;
   font-size: medium;
-  padding: 4px;
-  margin-left: 10px;
-  border-radius: 15px;
-  background-color: rgb(254, 104, 104);
+  font-weight: bold;
+  color: rgb(219, 40, 40);
 }
 
 .placed {
-  border: black 1px solid;
   font-size: medium;
-  padding: 4px;
-  margin-left: 10px;
-  border-radius: 15px;
-  background-color: rgb(254, 216, 104);
+  font-weight: bold;
+  color: rgb(238, 194, 61);
 }
 
 .shipped {
-  border: black 1px solid;
   font-size: medium;
-  padding: 4px;
-  margin-left: 10px;
-  border-radius: 15px;
-  background-color: rgb(129, 222, 79);
+  font-weight: bold;
+  color: rgb(98, 202, 41);
 }
 
 .delivered {
-  border: black 1px solid;
   font-size: medium;
-  padding: 4px;
-  margin-left: 10px;
-  border-radius: 15px;
-  color: white;
-  background-color: rgb(21, 16, 16);
+  font-weight: bold;
+  color: rgb(21, 16, 16);
 }
 
 .update {
