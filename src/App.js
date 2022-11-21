@@ -21,11 +21,13 @@ import EditProduct from "./components/forms/EditProduct";
 import Category from "./components/pages/categories/Category";
 import CreateCategory from "./components/forms/CreateCategory";
 import EditCategory from "./components/forms/EditCategory";
-import { ProtectedRoute } from "./components/ProtectedRoute";
+import ProtectedRoute from "./components/ProtectedRoute";
+import ProtectedLogin from "./components/ProtectedLogin";
 import EditAdmin from "./components/forms/EditAdmin";
 
 function App() {
   const admin = useSelector((state) => state.user);
+  console.log(admin.user);
 
   const currentPage = useLocation();
   const pagesWithoutNavbar = ["/login"];
@@ -34,24 +36,29 @@ function App() {
       {!pagesWithoutNavbar.includes(currentPage.pathname) && <Navbar />}
 
       <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/" element={<Home />} />
-        <Route path="/orders" element={<Orders />} />
-        <Route path="/products" element={<Products />} />
-        <Route path="/categories" element={<Categories />} />
-        <Route path="/categories/create" element={<CreateCategory />} />
-        <Route path="/categories/edit/:name" element={<EditCategory />} />
-        <Route path="/customers" element={<Customers />} />
-        <Route path="/admins" element={<Admins />} />
-        <Route path="/orders/:id" element={<Order />} />
-        <Route path="/products/:slug" element={<Product />} />
-        <Route path="/products/create" element={<CreateProduct />} />
-        <Route path="/products/edit/:slug" element={<EditProduct />} />
-        <Route path="/categories/:name" element={<Category />} />
-        <Route path="/customers/:id" element={<Customer />} />
-        <Route path="/admins/create" element={<CreateAdmin />} />
-        <Route path="/admins/:id" element={<Admin />} />
-        <Route path="/admins/edit/:id" element={<EditAdmin />} />
+        <Route element={<ProtectedLogin user={admin.user} />}>
+          <Route path="/login" element={<Login />} />
+        </Route>
+
+        <Route element={<ProtectedRoute user={admin.user} />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/categories" element={<Categories />} />
+          <Route path="/categories/create" element={<CreateCategory />} />
+          <Route path="/categories/edit/:name" element={<EditCategory />} />
+          <Route path="/customers" element={<Customers />} />
+          <Route path="/admins" element={<Admins />} />
+          <Route path="/orders/:id" element={<Order />} />
+          <Route path="/products/:slug" element={<Product />} />
+          <Route path="/products/create" element={<CreateProduct />} />
+          <Route path="/products/edit/:slug" element={<EditProduct />} />
+          <Route path="/categories/:name" element={<Category />} />
+          <Route path="/customers/:id" element={<Customer />} />
+          <Route path="/admins/create" element={<CreateAdmin />} />
+          <Route path="/admins/:id" element={<Admin />} />
+          <Route path="/admins/edit/:id" element={<EditAdmin />} />
+        </Route>
         <Route path="*" element={<NoMatch />} />
       </Routes>
     </div>

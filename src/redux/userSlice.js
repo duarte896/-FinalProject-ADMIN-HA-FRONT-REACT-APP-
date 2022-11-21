@@ -12,7 +12,7 @@ const userSlice = createSlice({
     },
     logout: {
       reducer: (state, action) => {
-        state.token = null;
+        state.user = null;
       },
     },
   },
