@@ -45,6 +45,7 @@ function CreateProduct() {
           description,
           radioValue,
           category,
+          image,
         },
       });
       navigate(`/products/${response.data}`);
