@@ -1,0 +1,8 @@
+.card {
+  height: 150px;
+  display: flex;
+}
+.icons {
+  padding-top: 10px;
+  font-size: 50px;
+}
