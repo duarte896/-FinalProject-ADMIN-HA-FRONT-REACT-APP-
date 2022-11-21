@@ -38,8 +38,8 @@ function Product() {
             <div className="row">
               <div className="col-6">
                 {" "}
-                <h3>ID: {product._id}</h3>
-                <p>Product: {product.name}</p>
+                <h3>Product: {product.name}</h3>
+                <p>ID: {product._id}</p>
                 <p>Category: {product.category.name}</p>
                 <p>Price: ${product.price}</p>
                 <p>Stock: {product.stock} </p>

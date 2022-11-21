@@ -1,3 +1,4 @@
+import styles from "./Orders.module.css";
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import axios from "axios";
@@ -72,7 +73,7 @@ function Order() {
               <span id="delivered">{order.orderStatus}</span>
             )}
           </h3>
-          <Button id="update" onClick={handleShow}>
+          <Button className={styles.update} onClick={handleShow}>
             <BsGear />
           </Button>
           <p>Date of issue: {order.createdAt}</p>

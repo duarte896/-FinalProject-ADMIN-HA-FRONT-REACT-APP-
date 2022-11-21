@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import "./Orders.css";
+import styles from "./Orders.module.css";
 import "../../../App.css";
 import Sidebar from "../../Sidebar";
 import { NavItem } from "react-bootstrap";
@@ -48,16 +48,24 @@ function Orders(params) {
                       <td>{item._id}</td>
                       <td>
                         {item.orderStatus === "Pending payment" && (
-                          <span id="pending">{item.orderStatus}</span>
+                          <span className={styles.pending}>
+                            {item.orderStatus}
+                          </span>
                         )}
                         {item.orderStatus === "Order placed" && (
-                          <span id="placed">{item.orderStatus}</span>
+                          <span className={styles.placed}>
+                            {item.orderStatus}
+                          </span>
                         )}
                         {item.orderStatus === "Shipped" && (
-                          <span id="shipped">{item.orderStatus}</span>
+                          <span className={styles.shipped}>
+                            {item.orderStatus}
+                          </span>
                         )}
                         {item.orderStatus === "Delivered" && (
-                          <span id="delivered">{item.orderStatus}</span>
+                          <span className={styles.delivered}>
+                            {item.orderStatus}
+                          </span>
                         )}
                       </td>
                       <td>{item.updatedAt}</td>
