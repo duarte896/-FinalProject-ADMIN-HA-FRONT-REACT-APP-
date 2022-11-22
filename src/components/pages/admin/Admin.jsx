@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Button from "react-bootstrap/Button";
 import Sidebar from "../../Sidebar";
@@ -12,18 +12,25 @@ function Admin() {
   const params = useParams();
   const handleShow = () => setShow(true);
   const navigate = useNavigate();
-  const token = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.user.token);
 
   useEffect(() => {
     const getData = async () => {
-      const response = await axios({
-        method: "GET",
-        url: `${process.env.REACT_APP_API_URL}/admins/${params.id}`,
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setAdmin(response.data);
+      try {
+        const response = await axios({
+          method: "GET",
+          url: `${process.env.REACT_APP_API_URL}/admins/${params.id}`,
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (response) {
+          setAdmin(response.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     };
     getData();
+    // eslint-disable-next-line
   }, []);
 
   return admin ? (

@@ -1,27 +1,30 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "../../../App.css";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Sidebar from "../../Sidebar";
 import { BiSearch } from "react-icons/bi";
 import styles from "./Category.module.css";
-import { useSelector } from "react-redux";
 
 function Users() {
   const [categories, setCategories] = useState([]);
-  const token = useSelector((state) => state.user.user);
-  const params = useParams();
 
   useEffect(() => {
     const getData = async () => {
-      const response = await axios({
-        method: "GET",
-        url: `${process.env.REACT_APP_API_URL}/categories`,
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setCategories(response.data);
+      try {
+        const response = await axios({
+          method: "GET",
+          url: `${process.env.REACT_APP_API_URL}/categories`,
+        });
+        if (response) {
+          setCategories(response.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     };
     getData();
+    // eslint-disable-next-line
   }, []);
 
   return (

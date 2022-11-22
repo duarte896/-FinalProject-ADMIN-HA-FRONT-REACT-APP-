@@ -12,22 +12,30 @@ function CreateProduct() {
   const [firstname, setFirstname] = useState(null);
   const [lastname, setLastname] = useState(null);
   const [email, setEmail] = useState(null);
-  const token = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.user.token);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const getData = async () => {
-      const response = await axios({
-        method: "GET",
-        url: `http://localhost:8000/admins/${params.id}`,
-      });
-      setAdmin(response.data);
-      setFirstname(response.data.firstname);
-      setLastname(response.data.lastname);
-      setEmail(response.data.email);
+      try {
+        const response = await axios({
+          method: "GET",
+          url: `http://localhost:8000/admins/${params.id}`,
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (response) {
+          setAdmin(response.data);
+          setFirstname(response.data.firstname);
+          setLastname(response.data.lastname);
+          setEmail(response.data.email);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     };
     getData();
+    // eslint-disable-next-line
   }, []);
 
   const handleSubmit = async (event) => {
@@ -43,7 +51,9 @@ function CreateProduct() {
           email,
         },
       });
-      navigate(`/admins/${admin._id}`);
+      if (response) {
+        navigate(`/admins/${admin._id}`);
+      }
     } catch (error) {
       console.log(error);
     }

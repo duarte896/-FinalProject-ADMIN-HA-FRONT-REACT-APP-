@@ -1,18 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
+const initialState = {};
 
 const userSlice = createSlice({
   name: "user",
-  initialState: {},
+  initialState,
   reducers: {
     saveTokenTask(state, action) {
-      state.user = action.payload;
+      state.token = action.payload;
     },
     saveUserInfoTask(state, action) {
       state = action.payload;
     },
     logout: {
       reducer: (state, action) => {
-        state.user = null;
+        return initialState;
       },
     },
   },

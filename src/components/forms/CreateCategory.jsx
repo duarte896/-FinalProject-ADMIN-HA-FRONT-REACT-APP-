@@ -10,7 +10,7 @@ function CreateCategory() {
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
   const navigate = useNavigate();
-  const token = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.user.token);
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -22,7 +22,9 @@ function CreateCategory() {
           name,
         },
       });
-      navigate(`/categories`);
+      if (response) {
+        navigate(`/categories`);
+      }
     } catch (error) {
       console.log(error);
     }

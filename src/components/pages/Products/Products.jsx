@@ -5,22 +5,26 @@ import { Link } from "react-router-dom";
 import Sidebar from "../../Sidebar";
 import { BiSearch } from "react-icons/bi";
 import styles from "./Product.module.css";
-import { useSelector } from "react-redux";
 
-function Products(params) {
+function Products() {
   const [data, setData] = useState([]);
-  const token = useSelector((state) => state.user.user);
 
   useEffect(() => {
     const getData = async () => {
-      const response = await axios({
-        method: "GET",
-        url: `${process.env.REACT_APP_API_URL}/products`,
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setData(response.data);
+      try {
+        const response = await axios({
+          method: "GET",
+          url: `${process.env.REACT_APP_API_URL}/products`,
+        });
+        if (response) {
+          setData(response.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     };
     getData();
+    // eslint-disable-next-line
   }, []);
 
   return (

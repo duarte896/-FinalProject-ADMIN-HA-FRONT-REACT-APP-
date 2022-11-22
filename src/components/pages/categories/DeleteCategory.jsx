@@ -6,22 +6,25 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function DeleteCategory({ category, show, setShow }) {
-  const token = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.user.token);
   const navigate = useNavigate();
   const handleClose = () => setShow(false);
 
-  const deleteCategory = async (event) => {
+  const deleteCategory = async () => {
     try {
-      await axios({
+      const response = await axios({
         url: `${process.env.REACT_APP_API_URL}/categories/${category._id}`,
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
+      if (response) {
+        navigate("/categories");
+      }
     } catch (error) {
       console.log(error);
     }
-    navigate("/categories");
   };
+
   return (
     <>
       <Modal show={show} onHide={handleClose} animation={false}>
@@ -30,10 +33,13 @@ function DeleteCategory({ category, show, setShow }) {
         </Modal.Header>
         <Modal.Body>
           <h2>
-            Are you sure you want to delete {category.name} from de Category
+            Are you sure you want to delete {category.name} from de category
             list?
           </h2>
-          <p style={{ fontWeight: "bolder" }}>This can't be undone.</p>
+          <p style={{ fontWeight: "bolder" }}>
+            All products that belong to this category will be deleted. This
+            can't be undone.
+          </p>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

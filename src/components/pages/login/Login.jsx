@@ -3,7 +3,7 @@ import React from "react";
 import styles from "./Login.module.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { saveTokenTask } from "../../../redux/userSlice";
 
@@ -29,7 +29,7 @@ function Login() {
       }
     } catch (error) {
       console.log(error);
-      // setMessage(error.response.data.msg);
+      setMessage(error.response.data.msg);
     }
   };
 

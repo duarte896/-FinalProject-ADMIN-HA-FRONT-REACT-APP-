@@ -1,7 +1,6 @@
-import { Route, Routes, Link, useLocation } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import "./App.css";
 import { useSelector } from "react-redux";
-import { useState } from "react";
 import Products from "./components/pages/products/Products";
 import Categories from "./components/pages/categories/Categories";
 import Orders from "./components/pages/orders/Orders";
@@ -35,11 +34,11 @@ function App() {
       {!pagesWithoutNavbar.includes(currentPage.pathname) && <Navbar />}
 
       <Routes>
-        <Route element={<ProtectedLogin user={admin.user} />}>
+        <Route element={<ProtectedLogin user={admin.token} />}>
           <Route path="/login" element={<Login />} />
         </Route>
 
-        <Route element={<ProtectedRoute user={admin.user} />}>
+        <Route element={<ProtectedRoute user={admin.token} />}>
           <Route path="/" element={<Home />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/products" element={<Products />} />

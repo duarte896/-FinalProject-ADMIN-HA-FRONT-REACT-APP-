@@ -1,6 +1,6 @@
 import styles from "./Orders.module.css";
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "../../Sidebar";
 import { Button } from "react-bootstrap";
@@ -17,7 +17,7 @@ function Order() {
   const params = useParams();
   const [orderDefaults, setOrderDefaults] = useState(null);
   const [show, setShow] = useState(false);
-  const token = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.user.token);
 
   const handleClose = () => setShow(false);
   const handleShow = () => {
@@ -27,33 +27,46 @@ function Order() {
 
   useEffect(() => {
     const getData = async () => {
-      const response = await axios({
-        method: "GET",
-        url: `${process.env.REACT_APP_API_URL}/orders/${params.id}`,
-        headers: { Authorization: `Bearer ${token}` },
-      });
-
-      setOrder(response.data.order);
-      setProducts(response.data.order.products);
-      setUser(response.data.order.user);
-      setOrderDefaults(response.data.orderdefaults);
+      try {
+        const response = await axios({
+          method: "GET",
+          url: `${process.env.REACT_APP_API_URL}/orders/${params.id}`,
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (response) {
+          setOrder(response.data.order);
+          setProducts(response.data.order.products);
+          setUser(response.data.order.user);
+          setOrderDefaults(response.data.orderdefaults);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     };
     getData();
+    // eslint-disable-next-line
   }, [update]);
 
   const updateStatus = async (event) => {
-    event.preventDefault();
-    const response = await axios({
-      url: `${process.env.REACT_APP_API_URL}/orders/${order._id}`,
-      method: "PATCH",
-      headers: { Authorization: `Bearer ${token}` },
-      data: {
-        orderStatus,
-      },
-    });
-    setUpdate(!update);
-    handleClose();
+    try {
+      event.preventDefault();
+      const response = await axios({
+        url: `${process.env.REACT_APP_API_URL}/orders/${order._id}`,
+        method: "PATCH",
+        headers: { Authorization: `Bearer ${token}` },
+        data: {
+          orderStatus,
+        },
+      });
+      if (response) {
+        setUpdate(!update);
+        handleClose();
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
+
   return order ? (
     <div className="container-fluid">
       <div className="row">

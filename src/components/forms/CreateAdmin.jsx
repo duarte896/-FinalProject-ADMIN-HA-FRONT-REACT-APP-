@@ -12,33 +12,31 @@ function CreateAdmin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
-  const [incorrectPassword, setIncorrectPassword] = useState(false);
-  const token = useSelector((state) => state.user.user);
-  const naviagate = useNavigate();
+  const [message, setMessage] = useState("");
+  const token = useSelector((state) => state.user.token);
+  const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (password === confirmedPassword) {
-      try {
-        await axios({
-          url: `${process.env.REACT_APP_API_URL}/admins`,
-          method: "POST",
-          headers: { Authorization: `Bearer ${token}` },
-          data: {
-            firstname,
-            lastname,
-            email,
-            password,
-          },
-        });
-      } catch (error) {
-        console.log(error);
+    try {
+      const response = await axios({
+        url: `${process.env.REACT_APP_API_URL}/admins`,
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+        data: {
+          firstname,
+          lastname,
+          email,
+          password,
+          confirmedPassword,
+        },
+      });
+      if (response) {
+        navigate("/admins");
       }
-      naviagate("/admins");
-    } else {
-      setIncorrectPassword(true);
-      setConfirmedPassword("");
-      setPassword("");
+    } catch (error) {
+      console.log(error.response.data.msg);
+      setMessage(error.response.data.msg);
     }
   };
 
@@ -66,7 +64,7 @@ function CreateAdmin() {
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="type" className="form-label">
+                <label htmlFor="lastname" className="form-label">
                   Lastname
                 </label>
                 <input
@@ -79,7 +77,7 @@ function CreateAdmin() {
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="price" className="form-label">
+                <label htmlFor="email" className="form-label">
                   Email
                 </label>
                 <input
@@ -92,12 +90,12 @@ function CreateAdmin() {
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="stock" className="form-label">
+                <label htmlFor="password" className="form-label">
                   Password
                 </label>
                 <input
                   value={password}
-                  type="passwword"
+                  type="password"
                   className="form-control"
                   id="password"
                   name="password"
@@ -105,25 +103,19 @@ function CreateAdmin() {
                 />
               </div>
               <div className="mb-3">
-                <label htmlFor="stock" className="form-label">
+                <label htmlFor="confirmedPassword" className="form-label">
                   Confirm password
                 </label>
                 <input
                   value={confirmedPassword}
-                  type="passwword"
+                  type="password"
                   className="form-control"
                   id="confirmedPassword"
                   name="confirmedPassword"
                   onChange={(event) => setConfirmedPassword(event.target.value)}
                 />
               </div>
-              {incorrectPassword && (
-                <p style={{ color: "red" }}>
-                  {" "}
-                  Sorry! Your passwords didn't matched!{" "}
-                </p>
-              )}
-
+              <p style={{ color: "red" }}>{message}</p>
               <div className="mb-3 d-flex justify-content-end">
                 <button type="submit" className="btn btn-primary">
                   Create Admin

@@ -1,25 +1,32 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
 import axios from "axios";
 import Sidebar from "../../Sidebar";
-import Styles from "./Product.module.css";
-import { useSelector } from "react-redux";
+import DeleteProduct from "./DeleteProduct";
 
 function Product() {
+  const handleShow = () => setShow(true);
+  const [show, setShow] = useState(false);
   const [product, setProduct] = useState();
   const params = useParams();
-  const token = useSelector((state) => state.user.user);
 
   useEffect(() => {
     const getData = async () => {
-      const response = await axios({
-        method: "GET",
-        url: `${process.env.REACT_APP_API_URL}/products/${params.slug}`,
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setProduct(response.data);
+      try {
+        const response = await axios({
+          method: "GET",
+          url: `${process.env.REACT_APP_API_URL}/products/${params.slug}`,
+        });
+        if (response) {
+          setProduct(response.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     };
     getData();
+    // eslint-disable-next-line
   }, []);
 
   return product ? (
@@ -34,8 +41,15 @@ function Product() {
               type="button"
               className="btn btn-sm btn-outline-secondary"
             >
-              Edit this product
+              Update product
             </Link>
+            <Button
+              className="d-block m-0"
+              variant="danger"
+              onClick={handleShow}
+            >
+              Delete product
+            </Button>
           </div>
           <div className="container-fluid">
             <div className="row">
@@ -54,6 +68,7 @@ function Product() {
             </div>
           </div>
         </main>
+        <DeleteProduct product={product} show={show} setShow={setShow} />
       </div>
     </div>
   ) : (

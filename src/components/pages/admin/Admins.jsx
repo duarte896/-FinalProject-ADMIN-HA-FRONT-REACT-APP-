@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "../../Sidebar";
 import { BiSearch } from "react-icons/bi";
@@ -7,21 +7,28 @@ import styles from "./Admins.module.css";
 import { useSelector } from "react-redux";
 
 function Admins() {
-  const token = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.user.token);
   const [admins, setAdmins] = useState();
-  const params = useParams();
 
   useEffect(() => {
     const getData = async () => {
-      const response = await axios({
-        method: "GET",
-        url: `${process.env.REACT_APP_API_URL}/admins`,
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setAdmins(response.data);
+      try {
+        const response = await axios({
+          method: "GET",
+          url: `${process.env.REACT_APP_API_URL}/admins`,
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (response) {
+          setAdmins(response.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     };
     getData();
+    // eslint-disable-next-line
   }, []);
+
   return admins ? (
     <div className="container-fluid">
       <div className="row">

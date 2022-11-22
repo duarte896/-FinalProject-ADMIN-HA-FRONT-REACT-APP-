@@ -19,38 +19,49 @@ function EditProduct() {
   const [categories, setCategories] = useState();
   const [category, setCategory] = useState();
   const navigate = useNavigate();
-  const token = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.user.token);
 
   useEffect(() => {
     const getCategories = async () => {
-      const response = await axios({
-        url: `${process.env.REACT_APP_API_URL}/categories`,
-        method: "GET",
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setCategories(response.data);
+      try {
+        const response = await axios({
+          url: `${process.env.REACT_APP_API_URL}/categories`,
+          method: "GET",
+        });
+        if (response) {
+          setCategories(response.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     };
     getCategories();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     const getData = async () => {
-      const response = await axios({
-        method: "GET",
-        url: `${process.env.REACT_APP_API_URL}/products/${params.slug}`,
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      console.log(response.data);
-      setProduct(response.data);
-      setName(response.data.name);
-      setType(response.data.type);
-      setPrice(response.data.price);
-      setStock(response.data.stock);
-      setCategory(response.data.category._id);
-      setDescription(response.data.description);
-      setRadioValue(response.data.featured);
+      try {
+        const response = await axios({
+          method: "GET",
+          url: `${process.env.REACT_APP_API_URL}/products/${params.slug}`,
+        });
+        if (response) {
+          setProduct(response.data);
+          setName(response.data.name);
+          setType(response.data.type);
+          setPrice(response.data.price);
+          setStock(response.data.stock);
+          setCategory(response.data.category._id);
+          setDescription(response.data.description);
+          setRadioValue(response.data.featured);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     };
     getData();
+    // eslint-disable-next-line
   }, []);
 
   const handleSubmit = async (event) => {
@@ -59,6 +70,7 @@ function EditProduct() {
       const response = await axios({
         url: `${process.env.REACT_APP_API_URL}/products/${product._id}`,
         method: "PATCH",
+        headers: { Authorization: `Bearer ${token}` },
         data: {
           name,
           type,
@@ -69,7 +81,9 @@ function EditProduct() {
           category,
         },
       });
-      navigate(`/products`);
+      if (response) {
+        navigate(`/products`);
+      }
     } catch (error) {
       console.log(error);
     }

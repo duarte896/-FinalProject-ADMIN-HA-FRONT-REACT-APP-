@@ -12,20 +12,26 @@ function EditCategory() {
   const [image, setImage] = useState("");
   const [category, setCategory] = useState();
   const params = useParams();
-  const token = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.user.token);
   const navigate = useNavigate();
 
   useEffect(() => {
     const getCategory = async () => {
-      const response = await axios({
-        url: `${process.env.REACT_APP_API_URL}/categories/${params.name}`,
-        method: "GET",
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setCategory(response.data);
-      setName(response.data.name);
+      try {
+        const response = await axios({
+          url: `${process.env.REACT_APP_API_URL}/categories/${params.name}`,
+          method: "GET",
+        });
+        if (response) {
+          setCategory(response.data);
+          setName(response.data.name);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     };
     getCategory();
+    // eslint-disable-next-line
   }, []);
 
   const handleSubmit = async (event) => {
@@ -34,11 +40,14 @@ function EditCategory() {
       const response = await axios({
         url: `${process.env.REACT_APP_API_URL}/categories/${category._id}`,
         method: "PATCH",
+        headers: { Authorization: `Bearer ${token}` },
         data: {
           name,
         },
       });
-      navigate(`/categories`);
+      if (response) {
+        navigate(`/categories`);
+      }
     } catch (error) {
       console.log(error);
     }

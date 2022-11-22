@@ -1,24 +1,31 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import Sidebar from "../../Sidebar";
 import { useSelector } from "react-redux";
 
 function Customer() {
   const [user, setUser] = useState();
-  const token = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.user.token);
   const params = useParams();
 
   useEffect(() => {
     const getData = async () => {
-      const response = await axios({
-        method: "GET",
-        url: `${process.env.REACT_APP_API_URL}/users/${params.id}`,
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setUser(response.data);
+      try {
+        const response = await axios({
+          method: "GET",
+          url: `${process.env.REACT_APP_API_URL}/users/${params.id}`,
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        if (response) {
+          setUser(response.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     };
     getData();
+    // eslint-disable-next-line
   }, []);
 
   return user ? (

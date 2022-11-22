@@ -16,19 +16,25 @@ function CreateProduct() {
   const [radioValue, setRadioValue] = useState("");
   const [categories, setCategories] = useState(null);
   const [category, setCategory] = useState();
-  const token = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.user.token);
   const navigate = useNavigate();
 
   useEffect(() => {
     const getCategories = async () => {
-      const response = await axios({
-        url: `${process.env.REACT_APP_API_URL}/categories`,
-        method: "GET",
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setCategories(response.data);
+      try {
+        const response = await axios({
+          url: `${process.env.REACT_APP_API_URL}/categories`,
+          method: "GET",
+        });
+        if (response) {
+          setCategories(response.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
     };
     getCategories();
+    // eslint-disable-next-line
   }, []);
 
   const handleSubmit = async (event) => {
@@ -37,6 +43,7 @@ function CreateProduct() {
       const response = await axios({
         url: `${process.env.REACT_APP_API_URL}/products`,
         method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
         data: {
           name,
           type,
@@ -48,7 +55,9 @@ function CreateProduct() {
           image,
         },
       });
-      navigate(`/products/${response.data}`);
+      if (response) {
+        navigate(`/products/${response.data}`);
+      }
     } catch (error) {
       console.log(error);
     }
