@@ -16,7 +16,7 @@ function Users() {
       try {
         const response = await axios({
           method: "GET",
-          url: `${process.env.REACT_APP_API_URL}/users`,
+          url: `${process.env.REACT_APP_API_URL}/users/customers`,
           headers: { Authorization: `Bearer ${token}` },
         });
         if (response) {
@@ -45,7 +45,8 @@ function Users() {
                   <th scope="col">User Id</th>
                   <th scope="col">Name</th>
                   <th scope="col">Lastname</th>
-                  <th scope="col">View user</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Cellphone</th>
                 </tr>
               </thead>
               <tbody>
@@ -55,11 +56,8 @@ function Users() {
                       <td>{item._id}</td>
                       <td>{item.firstname}</td>
                       <td>{item.lastname}</td>
-                      <td className={styles.viewCustomer}>
-                        <Link to={`/customers/${item._id}`}>
-                          <BiSearch />
-                        </Link>
-                      </td>
+                      <td>{item.email}</td>
+                      <td>{item.cellphone}</td>
                     </tr>
                   );
                 })}
