@@ -21,13 +21,29 @@
   font-weight: bold;
   color: rgb(21, 16, 16);
 }
+.pending_title {
+  color: rgb(219, 40, 40);
+}
+
+.placed_title {
+  color: rgb(238, 194, 61);
+}
+
+.shipped_title {
+  color: rgb(98, 202, 41);
+}
+
+.delivered_title {
+  color: rgb(21, 16, 16);
+}
 
 .update {
   margin-left: 10px;
+  margin-bottom: 10px;
   border: none;
   background-color: transparent;
   color: black;
-  padding-bottom: 3px;
+  padding-bottom: 8px;
 }
 
 .viewOrder {

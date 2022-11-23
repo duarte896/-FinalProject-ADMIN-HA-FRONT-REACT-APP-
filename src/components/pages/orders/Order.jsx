@@ -78,16 +78,28 @@ function Order() {
           <h3 style={{ display: "inline-block" }}>
             Status:
             {order.orderStatus === "Pending payment" && (
-              <span id="pending">{order.orderStatus}</span>
+              <span className={styles.pending_title} id="pending">
+                {" "}
+                {order.orderStatus}
+              </span>
             )}
             {order.orderStatus === "Order placed" && (
-              <span id="placed">{order.orderStatus}</span>
+              <span className={styles.placed_title} id="placed">
+                {" "}
+                {order.orderStatus}
+              </span>
             )}
             {order.orderStatus === "Shipped" && (
-              <span id="shipped">{order.orderStatus}</span>
+              <span className={styles.shipped_title} id="shipped">
+                {" "}
+                {order.orderStatus}
+              </span>
             )}
             {order.orderStatus === "Delivered" && (
-              <span id="delivered">{order.orderStatus}</span>
+              <span className={styles.delivered_title} id="delivered">
+                {" "}
+                {order.orderStatus}
+              </span>
             )}
           </h3>
           <Button className={styles.update} onClick={handleShow}>
