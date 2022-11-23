@@ -20,12 +20,7 @@ function Navbar() {
       >
         <span className="navbar-toggler-icon"></span>
       </button>
-      <input
-        className="form-control form-control-dark w-100 rounded-0 border-0"
-        type="text"
-        placeholder="Search"
-        aria-label="Search"
-      />
+      <div className=" w-100"></div>
       <div className="navbar-nav">
         <div className="nav-item text-nowrap">
           <button
