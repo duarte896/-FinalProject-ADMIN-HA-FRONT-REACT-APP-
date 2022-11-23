@@ -21,7 +21,7 @@ function CreateProduct() {
       try {
         const response = await axios({
           method: "GET",
-          url: `http://localhost:8000/admins/${params.id}`,
+          url: `${process.env.REACT_APP_API_URL}/admins/${params.id}`,
           headers: { Authorization: `Bearer ${token}` },
         });
         if (response) {
