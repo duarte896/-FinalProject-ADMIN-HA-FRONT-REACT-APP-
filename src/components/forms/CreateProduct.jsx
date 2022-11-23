@@ -13,8 +13,10 @@ function CreateProduct() {
   const [stock, setStock] = useState("");
   const [image, setImage] = useState("");
   const [description, setDescription] = useState("");
+  // eslint-disable-next-line
   const [radioValue, setRadioValue] = useState("");
   const [categories, setCategories] = useState(null);
+  // eslint-disable-next-line
   const [category, setCategory] = useState();
   const token = useSelector((state) => state.user.token);
   const navigate = useNavigate();
@@ -39,24 +41,20 @@ function CreateProduct() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const formData = new FormData(event.target);
     try {
       const response = await axios({
         url: `${process.env.REACT_APP_API_URL}/products`,
         method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
-        data: {
-          name,
-          type,
-          price,
-          stock,
-          description,
-          radioValue,
-          category,
-          image,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
         },
+        data: formData,
       });
       if (response) {
-        navigate(`/products/${response.data}`);
+        console.log(response.data);
+        navigate(`/products/${response.data.slug}`);
       }
     } catch (error) {
       console.log(error);
@@ -184,7 +182,7 @@ function CreateProduct() {
                 </label>
                 <br />
                 <select
-                  name="select"
+                  name="category"
                   onChange={(event) => setCategory(event.target.value)}
                 >
                   {categories.map((item) => {
