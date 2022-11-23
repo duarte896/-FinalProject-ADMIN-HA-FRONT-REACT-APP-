@@ -11,8 +11,8 @@ function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("admin@hack.com");
+  const [password, setPassword] = useState("123456");
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (e) => {
@@ -69,6 +69,7 @@ function Login() {
                   />
                   <p className={styles.errorMessage + " pt-3"}>{message}</p>
                 </div>
+                <div></div>
                 <button
                   style={{ color: "white" }}
                   type="submit"
@@ -77,6 +78,17 @@ function Login() {
                   Login
                 </button>
               </form>
+            </div>
+            <div className={styles.usertest}>
+              <span>
+                You can login as an administrator with this credentials:
+              </span>
+              <span className={styles.email}>
+                E-mail:<span className={styles.value}> admin@hack.com.</span>
+              </span>
+              <span>
+                Password: <span className={styles.value}> 123456.</span>
+              </span>
             </div>
           </div>
         </div>

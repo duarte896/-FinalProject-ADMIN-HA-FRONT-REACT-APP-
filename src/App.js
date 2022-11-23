@@ -10,7 +10,6 @@ import Customers from "./components/pages/customers/Customers";
 import CreateProduct from "./components/forms/CreateProduct";
 import CreateAdmin from "./components/forms/CreateAdmin";
 import Login from "./components/pages/login/Login";
-import Customer from "./components/pages/customers/Customer";
 import Admins from "./components/pages/admin/Admins";
 import Navbar from "./components/Navbar";
 import Admin from "./components/pages/admin/Admin";
@@ -52,7 +51,6 @@ function App() {
           <Route path="/products/create" element={<CreateProduct />} />
           <Route path="/products/edit/:slug" element={<EditProduct />} />
           <Route path="/categories/:name" element={<Category />} />
-          <Route path="/customers/:id" element={<Customer />} />
           <Route path="/admins/create" element={<CreateAdmin />} />
           <Route path="/admins/:id" element={<Admin />} />
           <Route path="/admins/edit/:id" element={<EditAdmin />} />
