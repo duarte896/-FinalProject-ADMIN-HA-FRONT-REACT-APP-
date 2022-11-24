@@ -36,20 +36,22 @@ function Product() {
         <main className="col-md-9 ms-sm-auto col-lg-10 px-md-4">
           <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 className="h2">Product Info</h1>
-            <Link
-              to={`/products/edit/${product.slug}`}
-              type="button"
-              className="btn btn-sm btn-outline-secondary"
-            >
-              Update product
-            </Link>
-            <Button
-              className="d-block m-0"
-              variant="danger"
-              onClick={handleShow}
-            >
-              Delete product
-            </Button>
+            <div>
+              <Link
+                to={`/products/edit/${product.slug}`}
+                type="button"
+                className="btn btn-success mb-2"
+              >
+                Update product
+              </Link>
+              <Button
+                className="d-block m-0"
+                variant="danger"
+                onClick={handleShow}
+              >
+                Delete product
+              </Button>
+            </div>
           </div>
           <div className="container-fluid">
             <div className="row">
