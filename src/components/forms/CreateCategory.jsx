@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 
 function CreateCategory() {
   const [name, setName] = useState("");
-  const [image, setImage] = useState("");
   const navigate = useNavigate();
   const token = useSelector((state) => state.user.token);
   const handleSubmit = async (event) => {
@@ -51,19 +50,6 @@ function CreateCategory() {
                   id="name"
                   name="name"
                   onChange={(event) => setName(event.target.value)}
-                />
-              </div>
-              <div className="mb-3">
-                <label htmlFor="image" className="form-label">
-                  Image
-                </label>
-                <input
-                  value={image}
-                  className="form-control"
-                  type="file"
-                  id="image"
-                  name="image"
-                  onChange={(event) => setImage(event.target.value)}
                 />
               </div>
               <div className="mb-3 d-flex justify-content-end">
