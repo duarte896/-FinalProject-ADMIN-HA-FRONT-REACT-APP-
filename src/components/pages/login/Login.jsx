@@ -80,14 +80,21 @@ function Login() {
               </form>
             </div>
             <div className={styles.usertest}>
+              <p
+                style={{ fontWeight: "bold", fontSize: "18px" }}
+                className="mb-1"
+              >
+                Possible user
+              </p>
               <span>
-                You can login as an administrator with this credentials:
+                To simplify access to the app, the following administrator
+                account is provided
               </span>
               <span className={styles.email}>
-                E-mail:<span className={styles.value}> admin@hack.com.</span>
+                E-mail:<span className={styles.value}> admin@hack.com</span>
               </span>
               <span>
-                Password: <span className={styles.value}> 123456.</span>
+                Password: <span className={styles.value}> 123456</span>
               </span>
             </div>
           </div>
