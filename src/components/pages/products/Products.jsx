@@ -64,11 +64,13 @@ function Products() {
                       <td>{item.category.name}</td>
                       <td>${item.price}</td>
                       <td>{item.stock}</td>
-                      <td>{item.updatedAt}</td>
+                      <td>
+                        {new Date(item.updatedAt).toLocaleDateString("es-ES")}
+                      </td>
                       <td>{item._id}</td>
-                      <td className={styles.viewProduct}>
+                      <td>
                         <Link to={`/products/${item.slug}`}>
-                          <BiSearch />
+                          <BiSearch className={styles.viewProduct} />
                         </Link>
                       </td>
                     </tr>

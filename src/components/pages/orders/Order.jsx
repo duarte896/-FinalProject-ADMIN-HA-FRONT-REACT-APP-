@@ -105,8 +105,13 @@ function Order() {
           <Button className={styles.update} onClick={handleShow}>
             <BsGear />
           </Button>
-          <p>Date of issue: {order.createdAt}</p>
-          <p>Last update: {order.updatedAt}</p>
+          <p>
+            Date of issue:{" "}
+            {new Date(order.createdAt).toLocaleDateString("es-ES")}
+          </p>
+          <p>
+            Last update: {new Date(order.updatedAt).toLocaleDateString("es-ES")}
+          </p>
 
           <Modal show={show} onHide={handleClose}>
             <Modal.Header closeButton>

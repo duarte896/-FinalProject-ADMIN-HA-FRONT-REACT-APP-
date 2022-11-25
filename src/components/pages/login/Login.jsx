@@ -86,7 +86,7 @@ function Login() {
               >
                 Possible user
               </p>
-              <span>
+              <span className="text-center">
                 To simplify access to the app, the following administrator
                 account is provided
               </span>

@@ -46,11 +46,12 @@ function Admin() {
           <p>Name: {admin.firstname + " " + admin.lastname}</p>
           <p>Email: {admin.email}</p>
 
-          <Button variant="danger" onClick={handleShow}>
+          <Button className="me-2 mb-2" variant="danger" onClick={handleShow}>
             Delete admin
           </Button>
           <Button
             variant="success"
+            className="mb-2"
             onClick={() => navigate(`/admins/edit/${admin._id}`)}
           >
             Update Admin

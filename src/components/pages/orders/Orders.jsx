@@ -46,7 +46,7 @@ function Orders() {
                   <th scope="col">State</th>
                   <th scope="col">Date</th>
                   <th scope="col">Total</th>
-                  <th scope="col">Customer</th>
+                  <th scope="col">Customer Id</th>
                   <th scope="col">View Order</th>
                 </tr>
               </thead>
@@ -77,7 +77,9 @@ function Orders() {
                           </span>
                         )}
                       </td>
-                      <td>{item.updatedAt}</td>
+                      <td>
+                        {new Date(item.updatedAt).toLocaleDateString("es-ES")}
+                      </td>
                       <td>${item.orderTotal}</td>
                       <td>{item.user}</td>
                       <td className={styles.viewOrder}>
