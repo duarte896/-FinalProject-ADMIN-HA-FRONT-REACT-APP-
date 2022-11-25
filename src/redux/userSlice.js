@@ -8,9 +8,6 @@ const userSlice = createSlice({
     saveTokenTask(state, action) {
       state.token = action.payload;
     },
-    saveUserInfoTask(state, action) {
-      state = action.payload;
-    },
     logout: {
       reducer: (state, action) => {
         return initialState;
@@ -20,5 +17,5 @@ const userSlice = createSlice({
 });
 
 const { actions, reducer } = userSlice;
-export const { saveTokenTask, saveUserInfoTask, logout } = actions;
+export const { saveTokenTask, logout } = actions;
 export default reducer;
