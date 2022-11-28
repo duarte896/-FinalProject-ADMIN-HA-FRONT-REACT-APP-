@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import styles from "./Sidebar.module.css";
+import { NavDropdown } from "react-bootstrap";
 import {
   BsHouseDoor,
   BsBoxSeam,
@@ -6,6 +8,7 @@ import {
   BsLock,
   BsPerson,
   BsTextLeft,
+  BsArrowUpLeftSquare,
 } from "react-icons/bs";
 
 function Sidebar() {
@@ -60,6 +63,19 @@ function Sidebar() {
               <span data-feather="users" className="align-text-bottom"></span>
               <BsLock /> Admins
             </Link>
+          </li>
+          <hr />
+
+          <li className={styles.frontLink + " nav-item"}>
+            <a
+              className={styles.frontLink}
+              href="https://ksurf-hackacademy.vercel.app/"
+              target={"_blank"}
+              rel="noreferrer"
+              eventKey="admin"
+            >
+              <BsArrowUpLeftSquare /> Back to e-commerce
+            </a>
           </li>
         </ul>
       </div>

@@ -1,0 +1,10 @@
+.frontLink li {
+  border-top: black 1px solid;
+}
+
+.frontLink a {
+  text-decoration: none;
+  color: black;
+  margin-left: 20px;
+  border-top: gray;
+}
