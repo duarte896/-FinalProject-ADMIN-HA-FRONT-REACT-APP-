@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import styles from "./Sidebar.module.css";
-import { NavDropdown } from "react-bootstrap";
 import {
   BsHouseDoor,
   BsBoxSeam,
@@ -15,66 +14,77 @@ function Sidebar() {
   return (
     <nav
       id="sidebarMenu"
-      className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse"
+      className="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse m-0 p-0"
     >
       <div className="position-sticky pt-3 sidebar-sticky">
         <ul className="nav flex-column" style={{ fontSize: "1.1rem" }}>
-          <li className="nav-item">
-            <Link to={"/"} className="nav-link active" aria-current="page">
-              <span
-                data-feather="AdminLayout"
-                className="align-text-bottom"
-              ></span>
-              <BsHouseDoor /> Dashboard
+          <li>
+            <Link
+              to={"/"}
+              className={styles.sidebar_link + " d-flex align-items-center"}
+              aria-current="page"
+              eventKey="dashboard"
+            >
+              <BsHouseDoor /> <span className="ms-1">Dashboard</span>
             </Link>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link" to={"/orders"}>
-              <span data-feather="file" className="align-text-bottom"></span>
-              <BsTruck /> Orders
+          <li>
+            <Link
+              className={styles.sidebar_link + " d-flex align-items-center"}
+              to={"/orders"}
+              eventKey="orders"
+            >
+              <BsTruck /> <span className="ms-1">Orders</span>
             </Link>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link" to={"/products"}>
-              <span
-                data-feather="shopping-cart"
-                className="align-text-bottom"
-              ></span>
-              <BsBoxSeam /> Products
+          <li>
+            <Link
+              className={styles.sidebar_link + " d-flex align-items-center"}
+              to={"/products"}
+              eventKey="products"
+            >
+              <BsBoxSeam /> <span className="ms-1">Products</span>
             </Link>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link" to={"/categories"}>
-              <span
-                data-feather="shopping-cart"
-                className="align-text-bottom"
-              ></span>
-              <BsTextLeft /> Categories
+          <li>
+            <Link
+              className={styles.sidebar_link + " d-flex align-items-center"}
+              to={"/categories"}
+              eventKey="categories"
+            >
+              <BsTextLeft /> <span className="ms-1">Categories</span>
             </Link>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link" to={"/customers"}>
-              <span data-feather="users" className="align-text-bottom"></span>
-              <BsPerson /> Customers
+          <li>
+            <Link
+              className={styles.sidebar_link + " d-flex align-items-center"}
+              to={"/customers"}
+              eventKey="customers"
+            >
+              <BsPerson /> <span className="ms-1">Customers</span>
             </Link>
           </li>
-          <li className="nav-item">
-            <Link className="nav-link" to={"/admins"}>
-              <span data-feather="users" className="align-text-bottom"></span>
-              <BsLock /> Admins
+          <li>
+            <Link
+              className={styles.sidebar_link + " d-flex align-items-center"}
+              to={"/admins"}
+              eventKey="admins"
+            >
+              <BsLock /> <span className="ms-1">Admins</span>
             </Link>
           </li>
           <hr />
 
-          <li className={styles.frontLink + " nav-item"}>
+          <li className={styles.frontLink}>
             <a
-              className={styles.frontLink}
+              className={styles.back_web + " d-flex align-items-center"}
               href="https://ksurf-hackacademy.vercel.app/"
               target={"_blank"}
               rel="noreferrer"
-              eventKey="admin"
+              eventkey="back"
             >
-              <BsArrowUpLeftSquare /> Back to e-commerce
+              <BsArrowUpLeftSquare />
+              <span className="ms-1">Back to e&#8209;commerce</span>
             </a>
           </li>
         </ul>
